@@ -1,0 +1,3008 @@
+{
+    "Matematika": [
+        {
+            "question": "Matematika savol 1?",
+            "answers": [
+                "Variant 3",
+                "Variant 2",
+                "Variant 1",
+                "Variant 4"
+            ],
+            "correct": "Variant 1"
+        },
+        {
+            "question": "Matematika savol 2?",
+            "answers": [
+                "Variant 4",
+                "Variant 3",
+                "Variant 1",
+                "Variant 2"
+            ],
+            "correct": "Variant 3"
+        },
+        {
+            "question": "Matematika savol 3?",
+            "answers": [
+                "Variant 4",
+                "Variant 2",
+                "Variant 3",
+                "Variant 1"
+            ],
+            "correct": "Variant 1"
+        },
+        {
+            "question": "Matematika savol 4?",
+            "answers": [
+                "Variant 4",
+                "Variant 1",
+                "Variant 3",
+                "Variant 2"
+            ],
+            "correct": "Variant 3"
+        },
+        {
+            "question": "Matematika savol 5?",
+            "answers": [
+                "Variant 4",
+                "Variant 2",
+                "Variant 3",
+                "Variant 1"
+            ],
+            "correct": "Variant 3"
+        },
+        {
+            "question": "Matematika savol 6?",
+            "answers": [
+                "Variant 3",
+                "Variant 2",
+                "Variant 4",
+                "Variant 1"
+            ],
+            "correct": "Variant 3"
+        },
+        {
+            "question": "Matematika savol 7?",
+            "answers": [
+                "Variant 3",
+                "Variant 2",
+                "Variant 1",
+                "Variant 4"
+            ],
+            "correct": "Variant 1"
+        },
+        {
+            "question": "Matematika savol 8?",
+            "answers": [
+                "Variant 3",
+                "Variant 4",
+                "Variant 2",
+                "Variant 1"
+            ],
+            "correct": "Variant 4"
+        },
+        {
+            "question": "Matematika savol 9?",
+            "answers": [
+                "Variant 1",
+                "Variant 2",
+                "Variant 4",
+                "Variant 3"
+            ],
+            "correct": "Variant 3"
+        },
+        {
+            "question": "Matematika savol 10?",
+            "answers": [
+                "Variant 3",
+                "Variant 2",
+                "Variant 4",
+                "Variant 1"
+            ],
+            "correct": "Variant 4"
+        },
+        {
+            "question": "Matematika savol 11?",
+            "answers": [
+                "Variant 2",
+                "Variant 1",
+                "Variant 3",
+                "Variant 4"
+            ],
+            "correct": "Variant 3"
+        },
+        {
+            "question": "Matematika savol 12?",
+            "answers": [
+                "Variant 3",
+                "Variant 4",
+                "Variant 1",
+                "Variant 2"
+            ],
+            "correct": "Variant 3"
+        },
+        {
+            "question": "Matematika savol 13?",
+            "answers": [
+                "Variant 4",
+                "Variant 2",
+                "Variant 3",
+                "Variant 1"
+            ],
+            "correct": "Variant 2"
+        },
+        {
+            "question": "Matematika savol 14?",
+            "answers": [
+                "Variant 3",
+                "Variant 4",
+                "Variant 2",
+                "Variant 1"
+            ],
+            "correct": "Variant 1"
+        },
+        {
+            "question": "Matematika savol 15?",
+            "answers": [
+                "Variant 1",
+                "Variant 4",
+                "Variant 2",
+                "Variant 3"
+            ],
+            "correct": "Variant 4"
+        },
+        {
+            "question": "Matematika savol 16?",
+            "answers": [
+                "Variant 1",
+                "Variant 3",
+                "Variant 2",
+                "Variant 4"
+            ],
+            "correct": "Variant 4"
+        },
+        {
+            "question": "Matematika savol 17?",
+            "answers": [
+                "Variant 3",
+                "Variant 2",
+                "Variant 1",
+                "Variant 4"
+            ],
+            "correct": "Variant 1"
+        },
+        {
+            "question": "Matematika savol 18?",
+            "answers": [
+                "Variant 4",
+                "Variant 3",
+                "Variant 1",
+                "Variant 2"
+            ],
+            "correct": "Variant 2"
+        },
+        {
+            "question": "Matematika savol 19?",
+            "answers": [
+                "Variant 1",
+                "Variant 2",
+                "Variant 3",
+                "Variant 4"
+            ],
+            "correct": "Variant 1"
+        },
+        {
+            "question": "Matematika savol 20?",
+            "answers": [
+                "Variant 1",
+                "Variant 4",
+                "Variant 2",
+                "Variant 3"
+            ],
+            "correct": "Variant 3"
+        },
+        {
+            "question": "Matematika savol 21?",
+            "answers": [
+                "Variant 4",
+                "Variant 3",
+                "Variant 1",
+                "Variant 2"
+            ],
+            "correct": "Variant 1"
+        },
+        {
+            "question": "Matematika savol 22?",
+            "answers": [
+                "Variant 1",
+                "Variant 4",
+                "Variant 3",
+                "Variant 2"
+            ],
+            "correct": "Variant 2"
+        },
+        {
+            "question": "Matematika savol 23?",
+            "answers": [
+                "Variant 4",
+                "Variant 1",
+                "Variant 2",
+                "Variant 3"
+            ],
+            "correct": "Variant 3"
+        },
+        {
+            "question": "Matematika savol 24?",
+            "answers": [
+                "Variant 2",
+                "Variant 3",
+                "Variant 1",
+                "Variant 4"
+            ],
+            "correct": "Variant 3"
+        },
+        {
+            "question": "Matematika savol 25?",
+            "answers": [
+                "Variant 3",
+                "Variant 4",
+                "Variant 2",
+                "Variant 1"
+            ],
+            "correct": "Variant 2"
+        },
+        {
+            "question": "Matematika savol 26?",
+            "answers": [
+                "Variant 1",
+                "Variant 3",
+                "Variant 2",
+                "Variant 4"
+            ],
+            "correct": "Variant 1"
+        },
+        {
+            "question": "Matematika savol 27?",
+            "answers": [
+                "Variant 1",
+                "Variant 3",
+                "Variant 4",
+                "Variant 2"
+            ],
+            "correct": "Variant 4"
+        },
+        {
+            "question": "Matematika savol 28?",
+            "answers": [
+                "Variant 1",
+                "Variant 4",
+                "Variant 2",
+                "Variant 3"
+            ],
+            "correct": "Variant 2"
+        },
+        {
+            "question": "Matematika savol 29?",
+            "answers": [
+                "Variant 2",
+                "Variant 4",
+                "Variant 3",
+                "Variant 1"
+            ],
+            "correct": "Variant 2"
+        },
+        {
+            "question": "Matematika savol 30?",
+            "answers": [
+                "Variant 4",
+                "Variant 1",
+                "Variant 2",
+                "Variant 3"
+            ],
+            "correct": "Variant 3"
+        },
+        {
+            "question": "Matematika savol 31?",
+            "answers": [
+                "Variant 4",
+                "Variant 2",
+                "Variant 3",
+                "Variant 1"
+            ],
+            "correct": "Variant 1"
+        },
+        {
+            "question": "Matematika savol 32?",
+            "answers": [
+                "Variant 1",
+                "Variant 3",
+                "Variant 4",
+                "Variant 2"
+            ],
+            "correct": "Variant 1"
+        },
+        {
+            "question": "Matematika savol 33?",
+            "answers": [
+                "Variant 3",
+                "Variant 1",
+                "Variant 4",
+                "Variant 2"
+            ],
+            "correct": "Variant 3"
+        },
+        {
+            "question": "Matematika savol 34?",
+            "answers": [
+                "Variant 3",
+                "Variant 1",
+                "Variant 4",
+                "Variant 2"
+            ],
+            "correct": "Variant 3"
+        },
+        {
+            "question": "Matematika savol 35?",
+            "answers": [
+                "Variant 4",
+                "Variant 1",
+                "Variant 2",
+                "Variant 3"
+            ],
+            "correct": "Variant 1"
+        },
+        {
+            "question": "Matematika savol 36?",
+            "answers": [
+                "Variant 2",
+                "Variant 3",
+                "Variant 1",
+                "Variant 4"
+            ],
+            "correct": "Variant 3"
+        },
+        {
+            "question": "Matematika savol 37?",
+            "answers": [
+                "Variant 1",
+                "Variant 2",
+                "Variant 4",
+                "Variant 3"
+            ],
+            "correct": "Variant 1"
+        },
+        {
+            "question": "Matematika savol 38?",
+            "answers": [
+                "Variant 3",
+                "Variant 2",
+                "Variant 4",
+                "Variant 1"
+            ],
+            "correct": "Variant 4"
+        },
+        {
+            "question": "Matematika savol 39?",
+            "answers": [
+                "Variant 4",
+                "Variant 3",
+                "Variant 1",
+                "Variant 2"
+            ],
+            "correct": "Variant 4"
+        },
+        {
+            "question": "Matematika savol 40?",
+            "answers": [
+                "Variant 2",
+                "Variant 3",
+                "Variant 4",
+                "Variant 1"
+            ],
+            "correct": "Variant 3"
+        },
+        {
+            "question": "Matematika savol 41?",
+            "answers": [
+                "Variant 4",
+                "Variant 1",
+                "Variant 3",
+                "Variant 2"
+            ],
+            "correct": "Variant 4"
+        },
+        {
+            "question": "Matematika savol 42?",
+            "answers": [
+                "Variant 4",
+                "Variant 2",
+                "Variant 1",
+                "Variant 3"
+            ],
+            "correct": "Variant 1"
+        },
+        {
+            "question": "Matematika savol 43?",
+            "answers": [
+                "Variant 1",
+                "Variant 4",
+                "Variant 2",
+                "Variant 3"
+            ],
+            "correct": "Variant 4"
+        },
+        {
+            "question": "Matematika savol 44?",
+            "answers": [
+                "Variant 2",
+                "Variant 3",
+                "Variant 4",
+                "Variant 1"
+            ],
+            "correct": "Variant 4"
+        },
+        {
+            "question": "Matematika savol 45?",
+            "answers": [
+                "Variant 4",
+                "Variant 2",
+                "Variant 1",
+                "Variant 3"
+            ],
+            "correct": "Variant 1"
+        },
+        {
+            "question": "Matematika savol 46?",
+            "answers": [
+                "Variant 4",
+                "Variant 2",
+                "Variant 1",
+                "Variant 3"
+            ],
+            "correct": "Variant 2"
+        },
+        {
+            "question": "Matematika savol 47?",
+            "answers": [
+                "Variant 1",
+                "Variant 4",
+                "Variant 2",
+                "Variant 3"
+            ],
+            "correct": "Variant 3"
+        },
+        {
+            "question": "Matematika savol 48?",
+            "answers": [
+                "Variant 1",
+                "Variant 2",
+                "Variant 4",
+                "Variant 3"
+            ],
+            "correct": "Variant 2"
+        },
+        {
+            "question": "Matematika savol 49?",
+            "answers": [
+                "Variant 3",
+                "Variant 2",
+                "Variant 4",
+                "Variant 1"
+            ],
+            "correct": "Variant 2"
+        },
+        {
+            "question": "Matematika savol 50?",
+            "answers": [
+                "Variant 2",
+                "Variant 3",
+                "Variant 1",
+                "Variant 4"
+            ],
+            "correct": "Variant 1"
+        },
+        {
+            "question": "Matematika savol 51?",
+            "answers": [
+                "Variant 2",
+                "Variant 1",
+                "Variant 3",
+                "Variant 4"
+            ],
+            "correct": "Variant 1"
+        },
+        {
+            "question": "Matematika savol 52?",
+            "answers": [
+                "Variant 4",
+                "Variant 2",
+                "Variant 3",
+                "Variant 1"
+            ],
+            "correct": "Variant 2"
+        },
+        {
+            "question": "Matematika savol 53?",
+            "answers": [
+                "Variant 3",
+                "Variant 2",
+                "Variant 1",
+                "Variant 4"
+            ],
+            "correct": "Variant 3"
+        },
+        {
+            "question": "Matematika savol 54?",
+            "answers": [
+                "Variant 2",
+                "Variant 3",
+                "Variant 1",
+                "Variant 4"
+            ],
+            "correct": "Variant 1"
+        },
+        {
+            "question": "Matematika savol 55?",
+            "answers": [
+                "Variant 1",
+                "Variant 2",
+                "Variant 4",
+                "Variant 3"
+            ],
+            "correct": "Variant 2"
+        },
+        {
+            "question": "Matematika savol 56?",
+            "answers": [
+                "Variant 3",
+                "Variant 2",
+                "Variant 4",
+                "Variant 1"
+            ],
+            "correct": "Variant 4"
+        },
+        {
+            "question": "Matematika savol 57?",
+            "answers": [
+                "Variant 4",
+                "Variant 3",
+                "Variant 1",
+                "Variant 2"
+            ],
+            "correct": "Variant 4"
+        },
+        {
+            "question": "Matematika savol 58?",
+            "answers": [
+                "Variant 4",
+                "Variant 1",
+                "Variant 2",
+                "Variant 3"
+            ],
+            "correct": "Variant 1"
+        },
+        {
+            "question": "Matematika savol 59?",
+            "answers": [
+                "Variant 1",
+                "Variant 2",
+                "Variant 4",
+                "Variant 3"
+            ],
+            "correct": "Variant 4"
+        },
+        {
+            "question": "Matematika savol 60?",
+            "answers": [
+                "Variant 3",
+                "Variant 4",
+                "Variant 2",
+                "Variant 1"
+            ],
+            "correct": "Variant 1"
+        },
+        {
+            "question": "Matematika savol 61?",
+            "answers": [
+                "Variant 2",
+                "Variant 1",
+                "Variant 4",
+                "Variant 3"
+            ],
+            "correct": "Variant 2"
+        },
+        {
+            "question": "Matematika savol 62?",
+            "answers": [
+                "Variant 4",
+                "Variant 3",
+                "Variant 2",
+                "Variant 1"
+            ],
+            "correct": "Variant 1"
+        },
+        {
+            "question": "Matematika savol 63?",
+            "answers": [
+                "Variant 3",
+                "Variant 1",
+                "Variant 4",
+                "Variant 2"
+            ],
+            "correct": "Variant 4"
+        },
+        {
+            "question": "Matematika savol 64?",
+            "answers": [
+                "Variant 4",
+                "Variant 1",
+                "Variant 2",
+                "Variant 3"
+            ],
+            "correct": "Variant 3"
+        },
+        {
+            "question": "Matematika savol 65?",
+            "answers": [
+                "Variant 2",
+                "Variant 4",
+                "Variant 3",
+                "Variant 1"
+            ],
+            "correct": "Variant 2"
+        },
+        {
+            "question": "Matematika savol 66?",
+            "answers": [
+                "Variant 3",
+                "Variant 4",
+                "Variant 2",
+                "Variant 1"
+            ],
+            "correct": "Variant 4"
+        },
+        {
+            "question": "Matematika savol 67?",
+            "answers": [
+                "Variant 4",
+                "Variant 2",
+                "Variant 1",
+                "Variant 3"
+            ],
+            "correct": "Variant 2"
+        },
+        {
+            "question": "Matematika savol 68?",
+            "answers": [
+                "Variant 1",
+                "Variant 4",
+                "Variant 3",
+                "Variant 2"
+            ],
+            "correct": "Variant 1"
+        },
+        {
+            "question": "Matematika savol 69?",
+            "answers": [
+                "Variant 2",
+                "Variant 3",
+                "Variant 4",
+                "Variant 1"
+            ],
+            "correct": "Variant 2"
+        },
+        {
+            "question": "Matematika savol 70?",
+            "answers": [
+                "Variant 1",
+                "Variant 2",
+                "Variant 4",
+                "Variant 3"
+            ],
+            "correct": "Variant 1"
+        },
+        {
+            "question": "Matematika savol 71?",
+            "answers": [
+                "Variant 2",
+                "Variant 1",
+                "Variant 4",
+                "Variant 3"
+            ],
+            "correct": "Variant 2"
+        },
+        {
+            "question": "Matematika savol 72?",
+            "answers": [
+                "Variant 4",
+                "Variant 1",
+                "Variant 3",
+                "Variant 2"
+            ],
+            "correct": "Variant 2"
+        },
+        {
+            "question": "Matematika savol 73?",
+            "answers": [
+                "Variant 3",
+                "Variant 4",
+                "Variant 2",
+                "Variant 1"
+            ],
+            "correct": "Variant 1"
+        },
+        {
+            "question": "Matematika savol 74?",
+            "answers": [
+                "Variant 4",
+                "Variant 3",
+                "Variant 1",
+                "Variant 2"
+            ],
+            "correct": "Variant 4"
+        },
+        {
+            "question": "Matematika savol 75?",
+            "answers": [
+                "Variant 2",
+                "Variant 1",
+                "Variant 4",
+                "Variant 3"
+            ],
+            "correct": "Variant 3"
+        },
+        {
+            "question": "Matematika savol 76?",
+            "answers": [
+                "Variant 3",
+                "Variant 4",
+                "Variant 1",
+                "Variant 2"
+            ],
+            "correct": "Variant 4"
+        },
+        {
+            "question": "Matematika savol 77?",
+            "answers": [
+                "Variant 1",
+                "Variant 4",
+                "Variant 3",
+                "Variant 2"
+            ],
+            "correct": "Variant 3"
+        },
+        {
+            "question": "Matematika savol 78?",
+            "answers": [
+                "Variant 1",
+                "Variant 2",
+                "Variant 3",
+                "Variant 4"
+            ],
+            "correct": "Variant 3"
+        },
+        {
+            "question": "Matematika savol 79?",
+            "answers": [
+                "Variant 4",
+                "Variant 2",
+                "Variant 3",
+                "Variant 1"
+            ],
+            "correct": "Variant 3"
+        },
+        {
+            "question": "Matematika savol 80?",
+            "answers": [
+                "Variant 4",
+                "Variant 3",
+                "Variant 2",
+                "Variant 1"
+            ],
+            "correct": "Variant 1"
+        },
+        {
+            "question": "Matematika savol 81?",
+            "answers": [
+                "Variant 4",
+                "Variant 1",
+                "Variant 3",
+                "Variant 2"
+            ],
+            "correct": "Variant 2"
+        },
+        {
+            "question": "Matematika savol 82?",
+            "answers": [
+                "Variant 2",
+                "Variant 4",
+                "Variant 3",
+                "Variant 1"
+            ],
+            "correct": "Variant 1"
+        },
+        {
+            "question": "Matematika savol 83?",
+            "answers": [
+                "Variant 3",
+                "Variant 4",
+                "Variant 2",
+                "Variant 1"
+            ],
+            "correct": "Variant 1"
+        },
+        {
+            "question": "Matematika savol 84?",
+            "answers": [
+                "Variant 4",
+                "Variant 2",
+                "Variant 3",
+                "Variant 1"
+            ],
+            "correct": "Variant 4"
+        },
+        {
+            "question": "Matematika savol 85?",
+            "answers": [
+                "Variant 3",
+                "Variant 1",
+                "Variant 2",
+                "Variant 4"
+            ],
+            "correct": "Variant 3"
+        },
+        {
+            "question": "Matematika savol 86?",
+            "answers": [
+                "Variant 3",
+                "Variant 4",
+                "Variant 1",
+                "Variant 2"
+            ],
+            "correct": "Variant 3"
+        },
+        {
+            "question": "Matematika savol 87?",
+            "answers": [
+                "Variant 4",
+                "Variant 2",
+                "Variant 1",
+                "Variant 3"
+            ],
+            "correct": "Variant 2"
+        },
+        {
+            "question": "Matematika savol 88?",
+            "answers": [
+                "Variant 2",
+                "Variant 1",
+                "Variant 4",
+                "Variant 3"
+            ],
+            "correct": "Variant 1"
+        },
+        {
+            "question": "Matematika savol 89?",
+            "answers": [
+                "Variant 4",
+                "Variant 1",
+                "Variant 3",
+                "Variant 2"
+            ],
+            "correct": "Variant 2"
+        },
+        {
+            "question": "Matematika savol 90?",
+            "answers": [
+                "Variant 1",
+                "Variant 2",
+                "Variant 3",
+                "Variant 4"
+            ],
+            "correct": "Variant 4"
+        },
+        {
+            "question": "Matematika savol 91?",
+            "answers": [
+                "Variant 3",
+                "Variant 4",
+                "Variant 2",
+                "Variant 1"
+            ],
+            "correct": "Variant 1"
+        },
+        {
+            "question": "Matematika savol 92?",
+            "answers": [
+                "Variant 4",
+                "Variant 1",
+                "Variant 2",
+                "Variant 3"
+            ],
+            "correct": "Variant 1"
+        },
+        {
+            "question": "Matematika savol 93?",
+            "answers": [
+                "Variant 4",
+                "Variant 3",
+                "Variant 1",
+                "Variant 2"
+            ],
+            "correct": "Variant 4"
+        },
+        {
+            "question": "Matematika savol 94?",
+            "answers": [
+                "Variant 2",
+                "Variant 4",
+                "Variant 1",
+                "Variant 3"
+            ],
+            "correct": "Variant 3"
+        },
+        {
+            "question": "Matematika savol 95?",
+            "answers": [
+                "Variant 4",
+                "Variant 1",
+                "Variant 2",
+                "Variant 3"
+            ],
+            "correct": "Variant 1"
+        },
+        {
+            "question": "Matematika savol 96?",
+            "answers": [
+                "Variant 3",
+                "Variant 1",
+                "Variant 4",
+                "Variant 2"
+            ],
+            "correct": "Variant 1"
+        },
+        {
+            "question": "Matematika savol 97?",
+            "answers": [
+                "Variant 1",
+                "Variant 3",
+                "Variant 2",
+                "Variant 4"
+            ],
+            "correct": "Variant 2"
+        },
+        {
+            "question": "Matematika savol 98?",
+            "answers": [
+                "Variant 2",
+                "Variant 4",
+                "Variant 1",
+                "Variant 3"
+            ],
+            "correct": "Variant 4"
+        },
+        {
+            "question": "Matematika savol 99?",
+            "answers": [
+                "Variant 1",
+                "Variant 4",
+                "Variant 2",
+                "Variant 3"
+            ],
+            "correct": "Variant 4"
+        },
+        {
+            "question": "Matematika savol 100?",
+            "answers": [
+                "Variant 1",
+                "Variant 3",
+                "Variant 4",
+                "Variant 2"
+            ],
+            "correct": "Variant 1"
+        }
+    ],
+    "Fizika": [
+        {
+            "question": "Fizika savol 1?",
+            "answers": [
+                "Variant 1",
+                "Variant 3",
+                "Variant 4",
+                "Variant 2"
+            ],
+            "correct": "Variant 3"
+        },
+        {
+            "question": "Fizika savol 2?",
+            "answers": [
+                "Variant 4",
+                "Variant 3",
+                "Variant 1",
+                "Variant 2"
+            ],
+            "correct": "Variant 4"
+        },
+        {
+            "question": "Fizika savol 3?",
+            "answers": [
+                "Variant 2",
+                "Variant 3",
+                "Variant 1",
+                "Variant 4"
+            ],
+            "correct": "Variant 2"
+        },
+        {
+            "question": "Fizika savol 4?",
+            "answers": [
+                "Variant 4",
+                "Variant 2",
+                "Variant 1",
+                "Variant 3"
+            ],
+            "correct": "Variant 1"
+        },
+        {
+            "question": "Fizika savol 5?",
+            "answers": [
+                "Variant 1",
+                "Variant 2",
+                "Variant 4",
+                "Variant 3"
+            ],
+            "correct": "Variant 4"
+        },
+        {
+            "question": "Fizika savol 6?",
+            "answers": [
+                "Variant 1",
+                "Variant 2",
+                "Variant 3",
+                "Variant 4"
+            ],
+            "correct": "Variant 4"
+        },
+        {
+            "question": "Fizika savol 7?",
+            "answers": [
+                "Variant 4",
+                "Variant 3",
+                "Variant 2",
+                "Variant 1"
+            ],
+            "correct": "Variant 2"
+        },
+        {
+            "question": "Fizika savol 8?",
+            "answers": [
+                "Variant 2",
+                "Variant 3",
+                "Variant 4",
+                "Variant 1"
+            ],
+            "correct": "Variant 3"
+        },
+        {
+            "question": "Fizika savol 9?",
+            "answers": [
+                "Variant 3",
+                "Variant 4",
+                "Variant 2",
+                "Variant 1"
+            ],
+            "correct": "Variant 2"
+        },
+        {
+            "question": "Fizika savol 10?",
+            "answers": [
+                "Variant 1",
+                "Variant 4",
+                "Variant 2",
+                "Variant 3"
+            ],
+            "correct": "Variant 1"
+        },
+        {
+            "question": "Fizika savol 11?",
+            "answers": [
+                "Variant 3",
+                "Variant 4",
+                "Variant 1",
+                "Variant 2"
+            ],
+            "correct": "Variant 1"
+        },
+        {
+            "question": "Fizika savol 12?",
+            "answers": [
+                "Variant 3",
+                "Variant 2",
+                "Variant 1",
+                "Variant 4"
+            ],
+            "correct": "Variant 2"
+        },
+        {
+            "question": "Fizika savol 13?",
+            "answers": [
+                "Variant 1",
+                "Variant 3",
+                "Variant 4",
+                "Variant 2"
+            ],
+            "correct": "Variant 3"
+        },
+        {
+            "question": "Fizika savol 14?",
+            "answers": [
+                "Variant 2",
+                "Variant 4",
+                "Variant 3",
+                "Variant 1"
+            ],
+            "correct": "Variant 4"
+        },
+        {
+            "question": "Fizika savol 15?",
+            "answers": [
+                "Variant 3",
+                "Variant 4",
+                "Variant 2",
+                "Variant 1"
+            ],
+            "correct": "Variant 3"
+        },
+        {
+            "question": "Fizika savol 16?",
+            "answers": [
+                "Variant 1",
+                "Variant 4",
+                "Variant 2",
+                "Variant 3"
+            ],
+            "correct": "Variant 2"
+        },
+        {
+            "question": "Fizika savol 17?",
+            "answers": [
+                "Variant 1",
+                "Variant 4",
+                "Variant 3",
+                "Variant 2"
+            ],
+            "correct": "Variant 3"
+        },
+        {
+            "question": "Fizika savol 18?",
+            "answers": [
+                "Variant 4",
+                "Variant 1",
+                "Variant 3",
+                "Variant 2"
+            ],
+            "correct": "Variant 1"
+        },
+        {
+            "question": "Fizika savol 19?",
+            "answers": [
+                "Variant 1",
+                "Variant 3",
+                "Variant 2",
+                "Variant 4"
+            ],
+            "correct": "Variant 2"
+        },
+        {
+            "question": "Fizika savol 20?",
+            "answers": [
+                "Variant 3",
+                "Variant 1",
+                "Variant 4",
+                "Variant 2"
+            ],
+            "correct": "Variant 1"
+        },
+        {
+            "question": "Fizika savol 21?",
+            "answers": [
+                "Variant 2",
+                "Variant 1",
+                "Variant 4",
+                "Variant 3"
+            ],
+            "correct": "Variant 3"
+        },
+        {
+            "question": "Fizika savol 22?",
+            "answers": [
+                "Variant 4",
+                "Variant 3",
+                "Variant 2",
+                "Variant 1"
+            ],
+            "correct": "Variant 4"
+        },
+        {
+            "question": "Fizika savol 23?",
+            "answers": [
+                "Variant 1",
+                "Variant 3",
+                "Variant 4",
+                "Variant 2"
+            ],
+            "correct": "Variant 3"
+        },
+        {
+            "question": "Fizika savol 24?",
+            "answers": [
+                "Variant 2",
+                "Variant 4",
+                "Variant 3",
+                "Variant 1"
+            ],
+            "correct": "Variant 1"
+        },
+        {
+            "question": "Fizika savol 25?",
+            "answers": [
+                "Variant 2",
+                "Variant 1",
+                "Variant 3",
+                "Variant 4"
+            ],
+            "correct": "Variant 3"
+        },
+        {
+            "question": "Fizika savol 26?",
+            "answers": [
+                "Variant 2",
+                "Variant 4",
+                "Variant 1",
+                "Variant 3"
+            ],
+            "correct": "Variant 1"
+        },
+        {
+            "question": "Fizika savol 27?",
+            "answers": [
+                "Variant 3",
+                "Variant 1",
+                "Variant 2",
+                "Variant 4"
+            ],
+            "correct": "Variant 2"
+        },
+        {
+            "question": "Fizika savol 28?",
+            "answers": [
+                "Variant 4",
+                "Variant 3",
+                "Variant 1",
+                "Variant 2"
+            ],
+            "correct": "Variant 4"
+        },
+        {
+            "question": "Fizika savol 29?",
+            "answers": [
+                "Variant 4",
+                "Variant 3",
+                "Variant 2",
+                "Variant 1"
+            ],
+            "correct": "Variant 1"
+        },
+        {
+            "question": "Fizika savol 30?",
+            "answers": [
+                "Variant 2",
+                "Variant 4",
+                "Variant 1",
+                "Variant 3"
+            ],
+            "correct": "Variant 2"
+        },
+        {
+            "question": "Fizika savol 31?",
+            "answers": [
+                "Variant 3",
+                "Variant 1",
+                "Variant 2",
+                "Variant 4"
+            ],
+            "correct": "Variant 2"
+        },
+        {
+            "question": "Fizika savol 32?",
+            "answers": [
+                "Variant 3",
+                "Variant 2",
+                "Variant 4",
+                "Variant 1"
+            ],
+            "correct": "Variant 4"
+        },
+        {
+            "question": "Fizika savol 33?",
+            "answers": [
+                "Variant 2",
+                "Variant 1",
+                "Variant 3",
+                "Variant 4"
+            ],
+            "correct": "Variant 4"
+        },
+        {
+            "question": "Fizika savol 34?",
+            "answers": [
+                "Variant 2",
+                "Variant 1",
+                "Variant 3",
+                "Variant 4"
+            ],
+            "correct": "Variant 4"
+        },
+        {
+            "question": "Fizika savol 35?",
+            "answers": [
+                "Variant 2",
+                "Variant 3",
+                "Variant 1",
+                "Variant 4"
+            ],
+            "correct": "Variant 3"
+        },
+        {
+            "question": "Fizika savol 36?",
+            "answers": [
+                "Variant 3",
+                "Variant 1",
+                "Variant 2",
+                "Variant 4"
+            ],
+            "correct": "Variant 2"
+        },
+        {
+            "question": "Fizika savol 37?",
+            "answers": [
+                "Variant 4",
+                "Variant 3",
+                "Variant 1",
+                "Variant 2"
+            ],
+            "correct": "Variant 4"
+        },
+        {
+            "question": "Fizika savol 38?",
+            "answers": [
+                "Variant 1",
+                "Variant 4",
+                "Variant 2",
+                "Variant 3"
+            ],
+            "correct": "Variant 3"
+        },
+        {
+            "question": "Fizika savol 39?",
+            "answers": [
+                "Variant 3",
+                "Variant 2",
+                "Variant 1",
+                "Variant 4"
+            ],
+            "correct": "Variant 1"
+        },
+        {
+            "question": "Fizika savol 40?",
+            "answers": [
+                "Variant 1",
+                "Variant 3",
+                "Variant 4",
+                "Variant 2"
+            ],
+            "correct": "Variant 3"
+        },
+        {
+            "question": "Fizika savol 41?",
+            "answers": [
+                "Variant 1",
+                "Variant 3",
+                "Variant 2",
+                "Variant 4"
+            ],
+            "correct": "Variant 3"
+        },
+        {
+            "question": "Fizika savol 42?",
+            "answers": [
+                "Variant 2",
+                "Variant 4",
+                "Variant 1",
+                "Variant 3"
+            ],
+            "correct": "Variant 1"
+        },
+        {
+            "question": "Fizika savol 43?",
+            "answers": [
+                "Variant 4",
+                "Variant 1",
+                "Variant 2",
+                "Variant 3"
+            ],
+            "correct": "Variant 1"
+        },
+        {
+            "question": "Fizika savol 44?",
+            "answers": [
+                "Variant 2",
+                "Variant 1",
+                "Variant 3",
+                "Variant 4"
+            ],
+            "correct": "Variant 1"
+        },
+        {
+            "question": "Fizika savol 45?",
+            "answers": [
+                "Variant 1",
+                "Variant 3",
+                "Variant 2",
+                "Variant 4"
+            ],
+            "correct": "Variant 1"
+        },
+        {
+            "question": "Fizika savol 46?",
+            "answers": [
+                "Variant 1",
+                "Variant 4",
+                "Variant 3",
+                "Variant 2"
+            ],
+            "correct": "Variant 2"
+        },
+        {
+            "question": "Fizika savol 47?",
+            "answers": [
+                "Variant 1",
+                "Variant 3",
+                "Variant 2",
+                "Variant 4"
+            ],
+            "correct": "Variant 2"
+        },
+        {
+            "question": "Fizika savol 48?",
+            "answers": [
+                "Variant 4",
+                "Variant 2",
+                "Variant 3",
+                "Variant 1"
+            ],
+            "correct": "Variant 2"
+        },
+        {
+            "question": "Fizika savol 49?",
+            "answers": [
+                "Variant 1",
+                "Variant 4",
+                "Variant 2",
+                "Variant 3"
+            ],
+            "correct": "Variant 3"
+        },
+        {
+            "question": "Fizika savol 50?",
+            "answers": [
+                "Variant 2",
+                "Variant 3",
+                "Variant 4",
+                "Variant 1"
+            ],
+            "correct": "Variant 1"
+        },
+        {
+            "question": "Fizika savol 51?",
+            "answers": [
+                "Variant 3",
+                "Variant 2",
+                "Variant 1",
+                "Variant 4"
+            ],
+            "correct": "Variant 4"
+        },
+        {
+            "question": "Fizika savol 52?",
+            "answers": [
+                "Variant 2",
+                "Variant 1",
+                "Variant 4",
+                "Variant 3"
+            ],
+            "correct": "Variant 4"
+        },
+        {
+            "question": "Fizika savol 53?",
+            "answers": [
+                "Variant 4",
+                "Variant 1",
+                "Variant 3",
+                "Variant 2"
+            ],
+            "correct": "Variant 4"
+        },
+        {
+            "question": "Fizika savol 54?",
+            "answers": [
+                "Variant 1",
+                "Variant 2",
+                "Variant 4",
+                "Variant 3"
+            ],
+            "correct": "Variant 1"
+        },
+        {
+            "question": "Fizika savol 55?",
+            "answers": [
+                "Variant 3",
+                "Variant 1",
+                "Variant 4",
+                "Variant 2"
+            ],
+            "correct": "Variant 4"
+        },
+        {
+            "question": "Fizika savol 56?",
+            "answers": [
+                "Variant 3",
+                "Variant 1",
+                "Variant 2",
+                "Variant 4"
+            ],
+            "correct": "Variant 3"
+        },
+        {
+            "question": "Fizika savol 57?",
+            "answers": [
+                "Variant 2",
+                "Variant 3",
+                "Variant 1",
+                "Variant 4"
+            ],
+            "correct": "Variant 3"
+        },
+        {
+            "question": "Fizika savol 58?",
+            "answers": [
+                "Variant 1",
+                "Variant 2",
+                "Variant 3",
+                "Variant 4"
+            ],
+            "correct": "Variant 4"
+        },
+        {
+            "question": "Fizika savol 59?",
+            "answers": [
+                "Variant 2",
+                "Variant 1",
+                "Variant 4",
+                "Variant 3"
+            ],
+            "correct": "Variant 4"
+        },
+        {
+            "question": "Fizika savol 60?",
+            "answers": [
+                "Variant 2",
+                "Variant 4",
+                "Variant 1",
+                "Variant 3"
+            ],
+            "correct": "Variant 3"
+        },
+        {
+            "question": "Fizika savol 61?",
+            "answers": [
+                "Variant 4",
+                "Variant 1",
+                "Variant 2",
+                "Variant 3"
+            ],
+            "correct": "Variant 1"
+        },
+        {
+            "question": "Fizika savol 62?",
+            "answers": [
+                "Variant 2",
+                "Variant 1",
+                "Variant 4",
+                "Variant 3"
+            ],
+            "correct": "Variant 3"
+        },
+        {
+            "question": "Fizika savol 63?",
+            "answers": [
+                "Variant 4",
+                "Variant 2",
+                "Variant 3",
+                "Variant 1"
+            ],
+            "correct": "Variant 4"
+        },
+        {
+            "question": "Fizika savol 64?",
+            "answers": [
+                "Variant 3",
+                "Variant 4",
+                "Variant 1",
+                "Variant 2"
+            ],
+            "correct": "Variant 4"
+        },
+        {
+            "question": "Fizika savol 65?",
+            "answers": [
+                "Variant 4",
+                "Variant 3",
+                "Variant 1",
+                "Variant 2"
+            ],
+            "correct": "Variant 1"
+        },
+        {
+            "question": "Fizika savol 66?",
+            "answers": [
+                "Variant 1",
+                "Variant 2",
+                "Variant 3",
+                "Variant 4"
+            ],
+            "correct": "Variant 2"
+        },
+        {
+            "question": "Fizika savol 67?",
+            "answers": [
+                "Variant 2",
+                "Variant 3",
+                "Variant 1",
+                "Variant 4"
+            ],
+            "correct": "Variant 2"
+        },
+        {
+            "question": "Fizika savol 68?",
+            "answers": [
+                "Variant 4",
+                "Variant 2",
+                "Variant 1",
+                "Variant 3"
+            ],
+            "correct": "Variant 2"
+        },
+        {
+            "question": "Fizika savol 69?",
+            "answers": [
+                "Variant 3",
+                "Variant 1",
+                "Variant 4",
+                "Variant 2"
+            ],
+            "correct": "Variant 1"
+        },
+        {
+            "question": "Fizika savol 70?",
+            "answers": [
+                "Variant 3",
+                "Variant 2",
+                "Variant 4",
+                "Variant 1"
+            ],
+            "correct": "Variant 2"
+        },
+        {
+            "question": "Fizika savol 71?",
+            "answers": [
+                "Variant 3",
+                "Variant 4",
+                "Variant 2",
+                "Variant 1"
+            ],
+            "correct": "Variant 4"
+        },
+        {
+            "question": "Fizika savol 72?",
+            "answers": [
+                "Variant 1",
+                "Variant 4",
+                "Variant 2",
+                "Variant 3"
+            ],
+            "correct": "Variant 2"
+        },
+        {
+            "question": "Fizika savol 73?",
+            "answers": [
+                "Variant 4",
+                "Variant 1",
+                "Variant 2",
+                "Variant 3"
+            ],
+            "correct": "Variant 2"
+        },
+        {
+            "question": "Fizika savol 74?",
+            "answers": [
+                "Variant 2",
+                "Variant 3",
+                "Variant 4",
+                "Variant 1"
+            ],
+            "correct": "Variant 1"
+        },
+        {
+            "question": "Fizika savol 75?",
+            "answers": [
+                "Variant 3",
+                "Variant 1",
+                "Variant 4",
+                "Variant 2"
+            ],
+            "correct": "Variant 2"
+        },
+        {
+            "question": "Fizika savol 76?",
+            "answers": [
+                "Variant 3",
+                "Variant 1",
+                "Variant 2",
+                "Variant 4"
+            ],
+            "correct": "Variant 1"
+        },
+        {
+            "question": "Fizika savol 77?",
+            "answers": [
+                "Variant 1",
+                "Variant 4",
+                "Variant 2",
+                "Variant 3"
+            ],
+            "correct": "Variant 2"
+        },
+        {
+            "question": "Fizika savol 78?",
+            "answers": [
+                "Variant 3",
+                "Variant 1",
+                "Variant 2",
+                "Variant 4"
+            ],
+            "correct": "Variant 3"
+        },
+        {
+            "question": "Fizika savol 79?",
+            "answers": [
+                "Variant 3",
+                "Variant 1",
+                "Variant 2",
+                "Variant 4"
+            ],
+            "correct": "Variant 1"
+        },
+        {
+            "question": "Fizika savol 80?",
+            "answers": [
+                "Variant 3",
+                "Variant 2",
+                "Variant 1",
+                "Variant 4"
+            ],
+            "correct": "Variant 1"
+        },
+        {
+            "question": "Fizika savol 81?",
+            "answers": [
+                "Variant 4",
+                "Variant 1",
+                "Variant 3",
+                "Variant 2"
+            ],
+            "correct": "Variant 1"
+        },
+        {
+            "question": "Fizika savol 82?",
+            "answers": [
+                "Variant 3",
+                "Variant 2",
+                "Variant 4",
+                "Variant 1"
+            ],
+            "correct": "Variant 2"
+        },
+        {
+            "question": "Fizika savol 83?",
+            "answers": [
+                "Variant 1",
+                "Variant 2",
+                "Variant 4",
+                "Variant 3"
+            ],
+            "correct": "Variant 4"
+        },
+        {
+            "question": "Fizika savol 84?",
+            "answers": [
+                "Variant 4",
+                "Variant 2",
+                "Variant 1",
+                "Variant 3"
+            ],
+            "correct": "Variant 4"
+        },
+        {
+            "question": "Fizika savol 85?",
+            "answers": [
+                "Variant 1",
+                "Variant 4",
+                "Variant 3",
+                "Variant 2"
+            ],
+            "correct": "Variant 3"
+        },
+        {
+            "question": "Fizika savol 86?",
+            "answers": [
+                "Variant 3",
+                "Variant 4",
+                "Variant 1",
+                "Variant 2"
+            ],
+            "correct": "Variant 3"
+        },
+        {
+            "question": "Fizika savol 87?",
+            "answers": [
+                "Variant 3",
+                "Variant 4",
+                "Variant 2",
+                "Variant 1"
+            ],
+            "correct": "Variant 4"
+        },
+        {
+            "question": "Fizika savol 88?",
+            "answers": [
+                "Variant 1",
+                "Variant 3",
+                "Variant 2",
+                "Variant 4"
+            ],
+            "correct": "Variant 3"
+        },
+        {
+            "question": "Fizika savol 89?",
+            "answers": [
+                "Variant 4",
+                "Variant 1",
+                "Variant 2",
+                "Variant 3"
+            ],
+            "correct": "Variant 2"
+        },
+        {
+            "question": "Fizika savol 90?",
+            "answers": [
+                "Variant 2",
+                "Variant 1",
+                "Variant 3",
+                "Variant 4"
+            ],
+            "correct": "Variant 4"
+        },
+        {
+            "question": "Fizika savol 91?",
+            "answers": [
+                "Variant 1",
+                "Variant 4",
+                "Variant 3",
+                "Variant 2"
+            ],
+            "correct": "Variant 4"
+        },
+        {
+            "question": "Fizika savol 92?",
+            "answers": [
+                "Variant 4",
+                "Variant 2",
+                "Variant 1",
+                "Variant 3"
+            ],
+            "correct": "Variant 3"
+        },
+        {
+            "question": "Fizika savol 93?",
+            "answers": [
+                "Variant 3",
+                "Variant 2",
+                "Variant 4",
+                "Variant 1"
+            ],
+            "correct": "Variant 4"
+        },
+        {
+            "question": "Fizika savol 94?",
+            "answers": [
+                "Variant 3",
+                "Variant 4",
+                "Variant 1",
+                "Variant 2"
+            ],
+            "correct": "Variant 3"
+        },
+        {
+            "question": "Fizika savol 95?",
+            "answers": [
+                "Variant 4",
+                "Variant 3",
+                "Variant 1",
+                "Variant 2"
+            ],
+            "correct": "Variant 2"
+        },
+        {
+            "question": "Fizika savol 96?",
+            "answers": [
+                "Variant 2",
+                "Variant 3",
+                "Variant 4",
+                "Variant 1"
+            ],
+            "correct": "Variant 2"
+        },
+        {
+            "question": "Fizika savol 97?",
+            "answers": [
+                "Variant 1",
+                "Variant 2",
+                "Variant 4",
+                "Variant 3"
+            ],
+            "correct": "Variant 3"
+        },
+        {
+            "question": "Fizika savol 98?",
+            "answers": [
+                "Variant 2",
+                "Variant 3",
+                "Variant 4",
+                "Variant 1"
+            ],
+            "correct": "Variant 1"
+        },
+        {
+            "question": "Fizika savol 99?",
+            "answers": [
+                "Variant 4",
+                "Variant 1",
+                "Variant 2",
+                "Variant 3"
+            ],
+            "correct": "Variant 4"
+        },
+        {
+            "question": "Fizika savol 100?",
+            "answers": [
+                "Variant 4",
+                "Variant 2",
+                "Variant 3",
+                "Variant 1"
+            ],
+            "correct": "Variant 2"
+        }
+    ],
+    "Kimyo": [
+        {
+            "question": "Kimyo savol 1?",
+            "answers": [
+                "Variant 4",
+                "Variant 2",
+                "Variant 1",
+                "Variant 3"
+            ],
+            "correct": "Variant 1"
+        },
+        {
+            "question": "Kimyo savol 2?",
+            "answers": [
+                "Variant 3",
+                "Variant 1",
+                "Variant 2",
+                "Variant 4"
+            ],
+            "correct": "Variant 4"
+        },
+        {
+            "question": "Kimyo savol 3?",
+            "answers": [
+                "Variant 3",
+                "Variant 4",
+                "Variant 2",
+                "Variant 1"
+            ],
+            "correct": "Variant 2"
+        },
+        {
+            "question": "Kimyo savol 4?",
+            "answers": [
+                "Variant 4",
+                "Variant 1",
+                "Variant 3",
+                "Variant 2"
+            ],
+            "correct": "Variant 4"
+        },
+        {
+            "question": "Kimyo savol 5?",
+            "answers": [
+                "Variant 3",
+                "Variant 4",
+                "Variant 2",
+                "Variant 1"
+            ],
+            "correct": "Variant 3"
+        },
+        {
+            "question": "Kimyo savol 6?",
+            "answers": [
+                "Variant 4",
+                "Variant 1",
+                "Variant 2",
+                "Variant 3"
+            ],
+            "correct": "Variant 4"
+        },
+        {
+            "question": "Kimyo savol 7?",
+            "answers": [
+                "Variant 2",
+                "Variant 4",
+                "Variant 1",
+                "Variant 3"
+            ],
+            "correct": "Variant 4"
+        },
+        {
+            "question": "Kimyo savol 8?",
+            "answers": [
+                "Variant 3",
+                "Variant 4",
+                "Variant 1",
+                "Variant 2"
+            ],
+            "correct": "Variant 3"
+        },
+        {
+            "question": "Kimyo savol 9?",
+            "answers": [
+                "Variant 4",
+                "Variant 1",
+                "Variant 3",
+                "Variant 2"
+            ],
+            "correct": "Variant 3"
+        },
+        {
+            "question": "Kimyo savol 10?",
+            "answers": [
+                "Variant 1",
+                "Variant 4",
+                "Variant 3",
+                "Variant 2"
+            ],
+            "correct": "Variant 1"
+        },
+        {
+            "question": "Kimyo savol 11?",
+            "answers": [
+                "Variant 4",
+                "Variant 2",
+                "Variant 1",
+                "Variant 3"
+            ],
+            "correct": "Variant 3"
+        },
+        {
+            "question": "Kimyo savol 12?",
+            "answers": [
+                "Variant 2",
+                "Variant 3",
+                "Variant 4",
+                "Variant 1"
+            ],
+            "correct": "Variant 4"
+        },
+        {
+            "question": "Kimyo savol 13?",
+            "answers": [
+                "Variant 2",
+                "Variant 3",
+                "Variant 1",
+                "Variant 4"
+            ],
+            "correct": "Variant 4"
+        },
+        {
+            "question": "Kimyo savol 14?",
+            "answers": [
+                "Variant 1",
+                "Variant 4",
+                "Variant 2",
+                "Variant 3"
+            ],
+            "correct": "Variant 1"
+        },
+        {
+            "question": "Kimyo savol 15?",
+            "answers": [
+                "Variant 1",
+                "Variant 4",
+                "Variant 3",
+                "Variant 2"
+            ],
+            "correct": "Variant 1"
+        },
+        {
+            "question": "Kimyo savol 16?",
+            "answers": [
+                "Variant 3",
+                "Variant 1",
+                "Variant 2",
+                "Variant 4"
+            ],
+            "correct": "Variant 4"
+        },
+        {
+            "question": "Kimyo savol 17?",
+            "answers": [
+                "Variant 2",
+                "Variant 1",
+                "Variant 4",
+                "Variant 3"
+            ],
+            "correct": "Variant 4"
+        },
+        {
+            "question": "Kimyo savol 18?",
+            "answers": [
+                "Variant 1",
+                "Variant 3",
+                "Variant 4",
+                "Variant 2"
+            ],
+            "correct": "Variant 2"
+        },
+        {
+            "question": "Kimyo savol 19?",
+            "answers": [
+                "Variant 4",
+                "Variant 2",
+                "Variant 1",
+                "Variant 3"
+            ],
+            "correct": "Variant 1"
+        },
+        {
+            "question": "Kimyo savol 20?",
+            "answers": [
+                "Variant 4",
+                "Variant 1",
+                "Variant 2",
+                "Variant 3"
+            ],
+            "correct": "Variant 4"
+        },
+        {
+            "question": "Kimyo savol 21?",
+            "answers": [
+                "Variant 1",
+                "Variant 4",
+                "Variant 2",
+                "Variant 3"
+            ],
+            "correct": "Variant 2"
+        },
+        {
+            "question": "Kimyo savol 22?",
+            "answers": [
+                "Variant 4",
+                "Variant 3",
+                "Variant 2",
+                "Variant 1"
+            ],
+            "correct": "Variant 3"
+        },
+        {
+            "question": "Kimyo savol 23?",
+            "answers": [
+                "Variant 4",
+                "Variant 2",
+                "Variant 3",
+                "Variant 1"
+            ],
+            "correct": "Variant 4"
+        },
+        {
+            "question": "Kimyo savol 24?",
+            "answers": [
+                "Variant 4",
+                "Variant 1",
+                "Variant 2",
+                "Variant 3"
+            ],
+            "correct": "Variant 2"
+        },
+        {
+            "question": "Kimyo savol 25?",
+            "answers": [
+                "Variant 3",
+                "Variant 4",
+                "Variant 2",
+                "Variant 1"
+            ],
+            "correct": "Variant 4"
+        },
+        {
+            "question": "Kimyo savol 26?",
+            "answers": [
+                "Variant 1",
+                "Variant 4",
+                "Variant 2",
+                "Variant 3"
+            ],
+            "correct": "Variant 2"
+        },
+        {
+            "question": "Kimyo savol 27?",
+            "answers": [
+                "Variant 3",
+                "Variant 2",
+                "Variant 4",
+                "Variant 1"
+            ],
+            "correct": "Variant 1"
+        },
+        {
+            "question": "Kimyo savol 28?",
+            "answers": [
+                "Variant 4",
+                "Variant 3",
+                "Variant 1",
+                "Variant 2"
+            ],
+            "correct": "Variant 4"
+        },
+        {
+            "question": "Kimyo savol 29?",
+            "answers": [
+                "Variant 1",
+                "Variant 3",
+                "Variant 4",
+                "Variant 2"
+            ],
+            "correct": "Variant 1"
+        },
+        {
+            "question": "Kimyo savol 30?",
+            "answers": [
+                "Variant 4",
+                "Variant 1",
+                "Variant 2",
+                "Variant 3"
+            ],
+            "correct": "Variant 4"
+        },
+        {
+            "question": "Kimyo savol 31?",
+            "answers": [
+                "Variant 1",
+                "Variant 2",
+                "Variant 3",
+                "Variant 4"
+            ],
+            "correct": "Variant 1"
+        },
+        {
+            "question": "Kimyo savol 32?",
+            "answers": [
+                "Variant 2",
+                "Variant 4",
+                "Variant 3",
+                "Variant 1"
+            ],
+            "correct": "Variant 1"
+        },
+        {
+            "question": "Kimyo savol 33?",
+            "answers": [
+                "Variant 3",
+                "Variant 2",
+                "Variant 1",
+                "Variant 4"
+            ],
+            "correct": "Variant 3"
+        },
+        {
+            "question": "Kimyo savol 34?",
+            "answers": [
+                "Variant 4",
+                "Variant 2",
+                "Variant 3",
+                "Variant 1"
+            ],
+            "correct": "Variant 3"
+        },
+        {
+            "question": "Kimyo savol 35?",
+            "answers": [
+                "Variant 4",
+                "Variant 2",
+                "Variant 1",
+                "Variant 3"
+            ],
+            "correct": "Variant 4"
+        },
+        {
+            "question": "Kimyo savol 36?",
+            "answers": [
+                "Variant 3",
+                "Variant 2",
+                "Variant 1",
+                "Variant 4"
+            ],
+            "correct": "Variant 3"
+        },
+        {
+            "question": "Kimyo savol 37?",
+            "answers": [
+                "Variant 3",
+                "Variant 2",
+                "Variant 4",
+                "Variant 1"
+            ],
+            "correct": "Variant 2"
+        },
+        {
+            "question": "Kimyo savol 38?",
+            "answers": [
+                "Variant 2",
+                "Variant 1",
+                "Variant 3",
+                "Variant 4"
+            ],
+            "correct": "Variant 4"
+        },
+        {
+            "question": "Kimyo savol 39?",
+            "answers": [
+                "Variant 1",
+                "Variant 4",
+                "Variant 2",
+                "Variant 3"
+            ],
+            "correct": "Variant 2"
+        },
+        {
+            "question": "Kimyo savol 40?",
+            "answers": [
+                "Variant 1",
+                "Variant 4",
+                "Variant 3",
+                "Variant 2"
+            ],
+            "correct": "Variant 2"
+        },
+        {
+            "question": "Kimyo savol 41?",
+            "answers": [
+                "Variant 3",
+                "Variant 2",
+                "Variant 1",
+                "Variant 4"
+            ],
+            "correct": "Variant 4"
+        },
+        {
+            "question": "Kimyo savol 42?",
+            "answers": [
+                "Variant 3",
+                "Variant 4",
+                "Variant 2",
+                "Variant 1"
+            ],
+            "correct": "Variant 2"
+        },
+        {
+            "question": "Kimyo savol 43?",
+            "answers": [
+                "Variant 3",
+                "Variant 2",
+                "Variant 4",
+                "Variant 1"
+            ],
+            "correct": "Variant 3"
+        },
+        {
+            "question": "Kimyo savol 44?",
+            "answers": [
+                "Variant 4",
+                "Variant 3",
+                "Variant 1",
+                "Variant 2"
+            ],
+            "correct": "Variant 1"
+        },
+        {
+            "question": "Kimyo savol 45?",
+            "answers": [
+                "Variant 4",
+                "Variant 2",
+                "Variant 3",
+                "Variant 1"
+            ],
+            "correct": "Variant 3"
+        },
+        {
+            "question": "Kimyo savol 46?",
+            "answers": [
+                "Variant 1",
+                "Variant 2",
+                "Variant 4",
+                "Variant 3"
+            ],
+            "correct": "Variant 1"
+        },
+        {
+            "question": "Kimyo savol 47?",
+            "answers": [
+                "Variant 2",
+                "Variant 4",
+                "Variant 3",
+                "Variant 1"
+            ],
+            "correct": "Variant 3"
+        },
+        {
+            "question": "Kimyo savol 48?",
+            "answers": [
+                "Variant 3",
+                "Variant 1",
+                "Variant 2",
+                "Variant 4"
+            ],
+            "correct": "Variant 3"
+        },
+        {
+            "question": "Kimyo savol 49?",
+            "answers": [
+                "Variant 3",
+                "Variant 2",
+                "Variant 4",
+                "Variant 1"
+            ],
+            "correct": "Variant 3"
+        },
+        {
+            "question": "Kimyo savol 50?",
+            "answers": [
+                "Variant 2",
+                "Variant 3",
+                "Variant 1",
+                "Variant 4"
+            ],
+            "correct": "Variant 3"
+        },
+        {
+            "question": "Kimyo savol 51?",
+            "answers": [
+                "Variant 2",
+                "Variant 1",
+                "Variant 4",
+                "Variant 3"
+            ],
+            "correct": "Variant 1"
+        },
+        {
+            "question": "Kimyo savol 52?",
+            "answers": [
+                "Variant 1",
+                "Variant 4",
+                "Variant 2",
+                "Variant 3"
+            ],
+            "correct": "Variant 2"
+        },
+        {
+            "question": "Kimyo savol 53?",
+            "answers": [
+                "Variant 2",
+                "Variant 4",
+                "Variant 1",
+                "Variant 3"
+            ],
+            "correct": "Variant 4"
+        },
+        {
+            "question": "Kimyo savol 54?",
+            "answers": [
+                "Variant 2",
+                "Variant 3",
+                "Variant 4",
+                "Variant 1"
+            ],
+            "correct": "Variant 4"
+        },
+        {
+            "question": "Kimyo savol 55?",
+            "answers": [
+                "Variant 4",
+                "Variant 3",
+                "Variant 2",
+                "Variant 1"
+            ],
+            "correct": "Variant 1"
+        },
+        {
+            "question": "Kimyo savol 56?",
+            "answers": [
+                "Variant 3",
+                "Variant 4",
+                "Variant 1",
+                "Variant 2"
+            ],
+            "correct": "Variant 4"
+        },
+        {
+            "question": "Kimyo savol 57?",
+            "answers": [
+                "Variant 2",
+                "Variant 3",
+                "Variant 4",
+                "Variant 1"
+            ],
+            "correct": "Variant 4"
+        },
+        {
+            "question": "Kimyo savol 58?",
+            "answers": [
+                "Variant 3",
+                "Variant 2",
+                "Variant 1",
+                "Variant 4"
+            ],
+            "correct": "Variant 1"
+        },
+        {
+            "question": "Kimyo savol 59?",
+            "answers": [
+                "Variant 3",
+                "Variant 2",
+                "Variant 1",
+                "Variant 4"
+            ],
+            "correct": "Variant 3"
+        },
+        {
+            "question": "Kimyo savol 60?",
+            "answers": [
+                "Variant 4",
+                "Variant 2",
+                "Variant 1",
+                "Variant 3"
+            ],
+            "correct": "Variant 3"
+        },
+        {
+            "question": "Kimyo savol 61?",
+            "answers": [
+                "Variant 4",
+                "Variant 3",
+                "Variant 2",
+                "Variant 1"
+            ],
+            "correct": "Variant 3"
+        },
+        {
+            "question": "Kimyo savol 62?",
+            "answers": [
+                "Variant 4",
+                "Variant 3",
+                "Variant 2",
+                "Variant 1"
+            ],
+            "correct": "Variant 1"
+        },
+        {
+            "question": "Kimyo savol 63?",
+            "answers": [
+                "Variant 4",
+                "Variant 3",
+                "Variant 1",
+                "Variant 2"
+            ],
+            "correct": "Variant 4"
+        },
+        {
+            "question": "Kimyo savol 64?",
+            "answers": [
+                "Variant 3",
+                "Variant 2",
+                "Variant 4",
+                "Variant 1"
+            ],
+            "correct": "Variant 3"
+        },
+        {
+            "question": "Kimyo savol 65?",
+            "answers": [
+                "Variant 3",
+                "Variant 2",
+                "Variant 4",
+                "Variant 1"
+            ],
+            "correct": "Variant 1"
+        },
+        {
+            "question": "Kimyo savol 66?",
+            "answers": [
+                "Variant 4",
+                "Variant 2",
+                "Variant 1",
+                "Variant 3"
+            ],
+            "correct": "Variant 1"
+        },
+        {
+            "question": "Kimyo savol 67?",
+            "answers": [
+                "Variant 3",
+                "Variant 1",
+                "Variant 4",
+                "Variant 2"
+            ],
+            "correct": "Variant 2"
+        },
+        {
+            "question": "Kimyo savol 68?",
+            "answers": [
+                "Variant 1",
+                "Variant 3",
+                "Variant 4",
+                "Variant 2"
+            ],
+            "correct": "Variant 4"
+        },
+        {
+            "question": "Kimyo savol 69?",
+            "answers": [
+                "Variant 3",
+                "Variant 4",
+                "Variant 1",
+                "Variant 2"
+            ],
+            "correct": "Variant 3"
+        },
+        {
+            "question": "Kimyo savol 70?",
+            "answers": [
+                "Variant 4",
+                "Variant 3",
+                "Variant 2",
+                "Variant 1"
+            ],
+            "correct": "Variant 4"
+        },
+        {
+            "question": "Kimyo savol 71?",
+            "answers": [
+                "Variant 3",
+                "Variant 4",
+                "Variant 2",
+                "Variant 1"
+            ],
+            "correct": "Variant 1"
+        },
+        {
+            "question": "Kimyo savol 72?",
+            "answers": [
+                "Variant 2",
+                "Variant 3",
+                "Variant 1",
+                "Variant 4"
+            ],
+            "correct": "Variant 4"
+        },
+        {
+            "question": "Kimyo savol 73?",
+            "answers": [
+                "Variant 1",
+                "Variant 3",
+                "Variant 2",
+                "Variant 4"
+            ],
+            "correct": "Variant 4"
+        },
+        {
+            "question": "Kimyo savol 74?",
+            "answers": [
+                "Variant 2",
+                "Variant 1",
+                "Variant 4",
+                "Variant 3"
+            ],
+            "correct": "Variant 2"
+        },
+        {
+            "question": "Kimyo savol 75?",
+            "answers": [
+                "Variant 2",
+                "Variant 4",
+                "Variant 1",
+                "Variant 3"
+            ],
+            "correct": "Variant 4"
+        },
+        {
+            "question": "Kimyo savol 76?",
+            "answers": [
+                "Variant 2",
+                "Variant 3",
+                "Variant 4",
+                "Variant 1"
+            ],
+            "correct": "Variant 3"
+        },
+        {
+            "question": "Kimyo savol 77?",
+            "answers": [
+                "Variant 3",
+                "Variant 1",
+                "Variant 4",
+                "Variant 2"
+            ],
+            "correct": "Variant 1"
+        },
+        {
+            "question": "Kimyo savol 78?",
+            "answers": [
+                "Variant 1",
+                "Variant 3",
+                "Variant 2",
+                "Variant 4"
+            ],
+            "correct": "Variant 4"
+        },
+        {
+            "question": "Kimyo savol 79?",
+            "answers": [
+                "Variant 2",
+                "Variant 1",
+                "Variant 4",
+                "Variant 3"
+            ],
+            "correct": "Variant 2"
+        },
+        {
+            "question": "Kimyo savol 80?",
+            "answers": [
+                "Variant 2",
+                "Variant 3",
+                "Variant 4",
+                "Variant 1"
+            ],
+            "correct": "Variant 1"
+        },
+        {
+            "question": "Kimyo savol 81?",
+            "answers": [
+                "Variant 4",
+                "Variant 1",
+                "Variant 2",
+                "Variant 3"
+            ],
+            "correct": "Variant 2"
+        },
+        {
+            "question": "Kimyo savol 82?",
+            "answers": [
+                "Variant 1",
+                "Variant 4",
+                "Variant 2",
+                "Variant 3"
+            ],
+            "correct": "Variant 3"
+        },
+        {
+            "question": "Kimyo savol 83?",
+            "answers": [
+                "Variant 1",
+                "Variant 4",
+                "Variant 3",
+                "Variant 2"
+            ],
+            "correct": "Variant 2"
+        },
+        {
+            "question": "Kimyo savol 84?",
+            "answers": [
+                "Variant 4",
+                "Variant 3",
+                "Variant 1",
+                "Variant 2"
+            ],
+            "correct": "Variant 2"
+        },
+        {
+            "question": "Kimyo savol 85?",
+            "answers": [
+                "Variant 3",
+                "Variant 4",
+                "Variant 2",
+                "Variant 1"
+            ],
+            "correct": "Variant 2"
+        },
+        {
+            "question": "Kimyo savol 86?",
+            "answers": [
+                "Variant 3",
+                "Variant 4",
+                "Variant 1",
+                "Variant 2"
+            ],
+            "correct": "Variant 4"
+        },
+        {
+            "question": "Kimyo savol 87?",
+            "answers": [
+                "Variant 3",
+                "Variant 2",
+                "Variant 1",
+                "Variant 4"
+            ],
+            "correct": "Variant 3"
+        },
+        {
+            "question": "Kimyo savol 88?",
+            "answers": [
+                "Variant 2",
+                "Variant 1",
+                "Variant 4",
+                "Variant 3"
+            ],
+            "correct": "Variant 1"
+        },
+        {
+            "question": "Kimyo savol 89?",
+            "answers": [
+                "Variant 4",
+                "Variant 3",
+                "Variant 2",
+                "Variant 1"
+            ],
+            "correct": "Variant 3"
+        },
+        {
+            "question": "Kimyo savol 90?",
+            "answers": [
+                "Variant 3",
+                "Variant 4",
+                "Variant 1",
+                "Variant 2"
+            ],
+            "correct": "Variant 3"
+        },
+        {
+            "question": "Kimyo savol 91?",
+            "answers": [
+                "Variant 3",
+                "Variant 4",
+                "Variant 2",
+                "Variant 1"
+            ],
+            "correct": "Variant 2"
+        },
+        {
+            "question": "Kimyo savol 92?",
+            "answers": [
+                "Variant 3",
+                "Variant 1",
+                "Variant 4",
+                "Variant 2"
+            ],
+            "correct": "Variant 2"
+        },
+        {
+            "question": "Kimyo savol 93?",
+            "answers": [
+                "Variant 4",
+                "Variant 3",
+                "Variant 2",
+                "Variant 1"
+            ],
+            "correct": "Variant 3"
+        },
+        {
+            "question": "Kimyo savol 94?",
+            "answers": [
+                "Variant 4",
+                "Variant 2",
+                "Variant 3",
+                "Variant 1"
+            ],
+            "correct": "Variant 4"
+        },
+        {
+            "question": "Kimyo savol 95?",
+            "answers": [
+                "Variant 1",
+                "Variant 4",
+                "Variant 2",
+                "Variant 3"
+            ],
+            "correct": "Variant 3"
+        },
+        {
+            "question": "Kimyo savol 96?",
+            "answers": [
+                "Variant 1",
+                "Variant 3",
+                "Variant 4",
+                "Variant 2"
+            ],
+            "correct": "Variant 3"
+        },
+        {
+            "question": "Kimyo savol 97?",
+            "answers": [
+                "Variant 2",
+                "Variant 4",
+                "Variant 1",
+                "Variant 3"
+            ],
+            "correct": "Variant 4"
+        },
+        {
+            "question": "Kimyo savol 98?",
+            "answers": [
+                "Variant 3",
+                "Variant 4",
+                "Variant 2",
+                "Variant 1"
+            ],
+            "correct": "Variant 3"
+        },
+        {
+            "question": "Kimyo savol 99?",
+            "answers": [
+                "Variant 3",
+                "Variant 2",
+                "Variant 1",
+                "Variant 4"
+            ],
+            "correct": "Variant 3"
+        },
+        {
+            "question": "Kimyo savol 100?",
+            "answers": [
+                "Variant 3",
+                "Variant 4",
+                "Variant 2",
+                "Variant 1"
+            ],
+            "correct": "Variant 4"
+        }
+    ]
+}
