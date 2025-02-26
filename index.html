@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PIN Kod Kirish</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f4f4f4; text-align: center; padding: 50px; }
+        .container { background: white; padding: 20px; border-radius: 10px; box-shadow: 0px 0px 10px rgba(0,0,0,0.1); width: 400px; margin: auto; }
+        input { width: 80%; padding: 10px; margin: 10px 0; border: 1px solid #ccc; border-radius: 5px; }
+        button { padding: 10px 20px; border: none; background: #28a745; color: white; font-size: 18px; border-radius: 5px; cursor: pointer; }
+        button:hover { background: #218838; }
+        p { font-size: 14px; color: red; }
+    </style>
+    <script>
+        const getTodayFileName = () => {
+            let today = new Date().toISOString().split('T')[0];
+            return `pins_${today}.json`;
+        };
+
+        async function checkPin() {
+            let pin = document.getElementById('pinInput').value;
+            let fileName = getTodayFileName();
+            let response = await fetch(fileName);
+            if (!response.ok) {
+                document.getElementById('message').innerText = "PIN bazasi topilmadi.";
+                return;
+            }
+            let data = await response.json();
+
+            let found = false;
+            for (let category in data) {
+                for (let entry of data[category]) {
+                    if (entry.pin === pin) {
+                        let expirationDate = new Date(entry.expires_at);
+                        let now = new Date();
+                        if (now > expirationDate) {
+                            document.getElementById('message').innerText = "Bu PIN kod muddati tugagan.";
+                            return;
+                        }
+                        if (entry.locked) {
+                            document.getElementById('message').innerText = "Bu PIN kod bloklangan.";
+                            return;
+                        }
+                        if (entry.used) {
+                            entry.locked = true;
+                            document.getElementById('message').innerText = "PIN kod allaqachon ishlatilgan va bloklangan.";
+                            return;
+                        }
+                        entry.used = true;
+                        entry.device_id = Math.random().toString(36).substring(7);
+                        document.getElementById('message').innerText = "PIN kod to'g'ri! Yo‘naltirilmoqda...";
+                        setTimeout(() => {
+                            let redirectLinks = {
+                                "A": "YOUR_LINK_FOR_A.html",  // Bu yerga to'g'ri linkni kiriting
+                                "B": "YOUR_LINK_FOR_B.html"   // Bu yerga to'g'ri linkni kiriting
+                            };
+                            window.location.href = redirectLinks[category];
+                        }, 2000);
+                        found = true;
+                        break;
+                    }
+                }
+                if (found) break;
+            }
+
+            if (!found) {
+                document.getElementById('message').innerText = "PIN kod noto‘g‘ri.";
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h2>PIN Kodni Kiriting</h2>
+        <input type="text" id="pinInput" placeholder="PIN kodni kiriting">
+        <button onclick="checkPin()">Tasdiqlash</button>
+        <p id="message"></p>
+    </div>
+</body>
+</html>
