@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PIN Kod Kirish</title>
+    <script>
+        const getTodayFileName = () => {
+            let today = new Date().toISOString().split('T')[0];
+            return `pins_${today}.json`;
+        };
+
+        async function checkPin() {
+            let pin = document.getElementById('pinInput').value;
+            let fileName = getTodayFileName();
+            let response = await fetch(fileName);
+            if (!response.ok) {
+                document.getElementById('message').innerText = "PIN bazasi topilmadi.";
+                return;
+            }
+            let data = await response.json();
+
+            let found = false;
+            for (let category in data) {
+                for (let entry of data[category]) {
+                    if (entry.pin === pin) {
+                        if (entry.locked) {
+                            document.getElementById('message').innerText = "Bu PIN kod bloklangan.";
+                            return;
+                        }
+                        if (entry.used) {
+                            entry.locked = true;
+                            document.getElementById('message').innerText = "PIN kod allaqachon ishlatilgan va bloklangan.";
+                            return;
+                        }
+                        entry.used = true;
+                        entry.device_id = Math.random().toString(36).substring(7);
+                        document.getElementById('message').innerText = "PIN kod to'g'ri! Yo‘naltirilmoqda...";
+                        setTimeout(() => {
+                            window.location.href = "category_" + category.toLowerCase() + ".html";
+                        }, 2000);
+                        found = true;
+                        break;
+                    }
+                }
+                if (found) break;
+            }
+
+            if (!found) {
+                document.getElementById('message').innerText = "PIN kod noto‘g‘ri.";
+            }
+        }
+    </script>
+</head>
+<body>
+    <h2>PIN Kodni Kiriting</h2>
+    <input type="text" id="pinInput" placeholder="PIN kodni kiriting">
+    <button onclick="checkPin()">Tasdiqlash</button>
+    <p id="message"></p>
+</body>
+</html>
