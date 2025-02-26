@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Tizimi</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; background-color: #f4f4f4; padding: 20px; }
+        .container { background: white; padding: 20px; border-radius: 10px; box-shadow: 0px 0px 10px rgba(0,0,0,0.1); width: 500px; margin: auto; }
+        .question { font-size: 18px; margin: 20px 0; }
+        button { padding: 10px 20px; border: none; background: #28a745; color: white; font-size: 18px; border-radius: 5px; cursor: pointer; }
+        button:hover { background: #218838; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Test Tizimi</h2>
+    <form method="POST" action="server.php">
+        <label for="categorySelect">Toifani tanlang:</label>
+        <select id="categorySelect" name="category">
+            <option value="matematika.pdf">Matematika</option>
+            <option value="fizika.pdf">Fizika</option>
+            <option value="kimyo.pdf">Kimyo</option>
+        </select>
+        <button type="submit">Boshlash</button>
+    </form>
+</div>
+
+</body>
+</html>
