@@ -32,9 +32,16 @@ function extractQuestionsFromPDF($filePath) {
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['category'])) {
     $category = $_POST['category'];
-    $pdfPath = __DIR__ . "/pdfs/" . $category;
-    if (!file_exists($pdfPath)) {
-        die("PDF topilmadi.");
+    $pdfPath = [
+            "Rentgenologiya.pdf" => "https://raw.githubusercontent.com/Foydalanuvchi/Repository/main/pdfs/Rentgenologiya.pdf",
+    "matematika.pdf" => "https://raw.githubusercontent.com/Foydalanuvchi/Repository/main/pdfs/matematika.pdf",
+    "fizika.pdf" => "https://raw.githubusercontent.com/Foydalanuvchi/Repository/main/pdfs/fizika.pdf",
+    "kimyo.pdf" => "https://raw.githubusercontent.com/Foydalanuvchi/Repository/main/pdfs/kimyo.pdf"
+];
+
+if (!isset($pdfUrls[$category])) {
+    die("Noto‘g‘ri toifa tanlandi.");
+}
     }
     
     $questions = extractQuestionsFromPDF($pdfPath);
