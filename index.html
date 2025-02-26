@@ -3,45 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quiz Test</title>
+    <title>Shifokorlar Uchun Test</title>
     <style>
-        body { font-family: Arial, sans-serif; text-align: center; margin: 20px; }
-        .container { max-width: 600px; margin: auto; padding: 20px; border: 1px solid #ddd; border-radius: 10px; box-shadow: 2px 2px 10px rgba(0,0,0,0.1); }
-        .question { font-size: 18px; font-weight: bold; margin-bottom: 10px; }
-        .option { display: block; padding: 10px; margin: 5px; background: #f0f0f0; border: 1px solid #ccc; cursor: pointer; border-radius: 5px; }
-        .correct { background-color: #c8e6c9; }
-        .wrong { background-color: #ffcdd2; }
-        #result { font-size: 20px; font-weight: bold; margin-top: 20px; }
-        button { padding: 10px 15px; font-size: 16px; margin-top: 10px; cursor: pointer; border: none; border-radius: 5px; background-color: #007bff; color: white; }
-        button:disabled { background-color: #aaa; cursor: not-allowed; }
-        #timer { font-size: 18px; font-weight: bold; margin-bottom: 10px; }
+        body { font-family: Arial, sans-serif; background: #f5f5f5; text-align: center; margin: 0; padding: 0; }
+        .container { max-width: 700px; background: white; margin: 50px auto; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+        h1 { color: #333; }
+        .question { font-size: 18px; font-weight: bold; margin-bottom: 10px; text-align: left; }
+        .option { display: block; padding: 10px; margin: 5px; background: #f9f9f9; border: 1px solid #ccc; cursor: pointer; border-radius: 5px; text-align: left; }
+        .option:hover { background: #e0e0e0; }
+        .correct { background-color: #c8e6c9 !important; }
+        .wrong { background-color: #ffcdd2 !important; }
+        #timer { font-size: 18px; font-weight: bold; color: red; }
+        #next-btn { padding: 10px 15px; font-size: 16px; margin-top: 10px; cursor: pointer; border: none; border-radius: 5px; background-color: #007bff; color: white; }
+        #next-btn:disabled { background-color: #aaa; cursor: not-allowed; }
+        #result { font-size: 22px; font-weight: bold; margin-top: 20px; }
     </style>
 </head>
 <body>
-    <h1>Quiz Test</h1>
-
-    <div id="quiz-container" class="container">
+    <div class="container">
+        <h1>Shifokorlar Uchun Test</h1>
         <p id="timer">Vaqt: 60 soniya</p>
         <p id="question" class="question"></p>
         <div id="options"></div>
-        <button id="next-btn" onclick="nextQuestion()" disabled>Keyingi</button>
+        <button id="next-btn" onclick="nextQuestion()" disabled>Keyingi savol</button>
     </div>
-
     <p id="result" class="hidden"></p>
 
     <script>
-        // ✅ **Test savollari (HTML kod ichida qo'lda kiritiladi)**
+        // ✅ **Test savollari**
         const allQuestions = [
-            { question: "Yerning sun’iy yo‘ldoshi qaysi?", options: ["Quyosh", "Oy", "Yupiter", "Venera"], correct: 1 },
-            { question: "2 + 2 = ?", options: ["3", "4", "5", "6"], correct: 1 },
-            { question: "O‘zbekistonning poytaxti qaysi shahar?", options: ["Buxoro", "Toshkent", "Samarqand", "Urganch"], correct: 1 },
-            { question: "Eng katta okean?", options: ["Atlantika", "Hind", "Tinch", "Shimoliy Muz"], correct: 2 },
-            { question: "Elementlarning periodik jadvalini kim yaratgan?", options: ["Nyuton", "Mendeleyev", "Eynshteyn", "Tesla"], correct: 1 },
-            { question: "Suvning formulasi?", options: ["CO2", "H2O", "O2", "N2"], correct: 1 },
-            { question: "Eng katta sayyora?", options: ["Mars", "Yupiter", "Venera", "Merkuriy"], correct: 1 },
-            { question: "Insulin qaysi a'zoda ishlab chiqariladi?", options: ["Jigar", "Buyrak", "Me’da osti bezi", "Oshqozon"], correct: 2 },
-            { question: "O‘zbekistonda mustaqillik qachon e’lon qilingan?", options: ["1990", "1991", "1992", "1989"], correct: 1 },
-            { question: "Eng katta qit’a?", options: ["Afrika", "Yevropa", "Osiyo", "Amerika"], correct: 2 }
+            { question: "Qaysi gormon qondagi shakar miqdorini kamaytiradi?", options: ["Insulin", "Adrenalin", "Kortizol", "Testosteron"], correct: 0 },
+            { question: "Odam tanasidagi eng katta organ?", options: ["Jigar", "Teri", "Oshqozon", "O‘pka"], correct: 1 },
+            { question: "Qaysi qon guruhi universal donor hisoblanadi?", options: ["AB+", "O-", "A+", "B-"], correct: 1 },
+            { question: "Qaysi vitamin quyosh nuri ta’sirida ishlab chiqariladi?", options: ["A vitamini", "C vitamini", "D vitamini", "B12"], correct: 2 },
+            { question: "Qaysi suyak inson tanasida eng uzun?", options: ["Bilak suyagi", "To‘piq suyagi", "Son suyagi", "Kurak suyagi"], correct: 2 },
+            { question: "O‘pkaning asosiy vazifasi?", options: ["Havoni tozalash", "Oziq moddalarni so‘rish", "Qonni kislorod bilan ta’minlash", "Haroratni nazorat qilish"], correct: 2 },
+            { question: "O‘tkir appenditsit qanday davolanadi?", options: ["Dori bilan", "Jarrohlik yo‘li bilan", "Fizioterapiya", "Massaj"], correct: 1 },
+            { question: "Qaysi qon guruhi universal qabul qiluvchi hisoblanadi?", options: ["AB+", "O-", "A-", "B+"], correct: 0 },
+            { question: "Inson tanasidagi eng kuchli mushak?", options: ["Biceps", "Yurak", "Tili", "Son mushaklari"], correct: 2 }
         ];
 
         let selectedQuestions = [];
