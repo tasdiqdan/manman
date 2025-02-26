@@ -20,7 +20,8 @@
     <h2>Test Tizimi</h2>
     <label for="categorySelect">Toifani tanlang:</label>
     <select id="categorySelect">
-        <option value="https://raw.githack.com/tasdiqdan/manman/73328a51ee83dec715c75f4c01976ad1f3e11081/Rentgenologiya.pdf">Rentgenologiya</option>
+        <option value="Rentgenologiya.pdf">Rentgenologiya</option>
+        <option value="matematika.pdf">Matematika</option>
         <option value="fizika.pdf">Fizika</option>
         <option value="kimyo.pdf">Kimyo</option>
     </select>
@@ -46,21 +47,24 @@
     let currentQuestionIndex = 0;
     let timerInterval;
 
-    function startTest() {
+    async function startTest() {
         let selectedCategory = document.getElementById("categorySelect").value;
         document.getElementById("startContainer").style.display = "none";
         document.getElementById("testContainer").style.display = "block";
-        loadPDF(selectedCategory);
+        await loadPDF(selectedCategory);
     }
 
     async function loadPDF(pdfUrl) {
-        const loadingTask = pdfjsLib.getDocument(pdfUrl);
         try {
+            const loadingTask = pdfjsLib.getDocument(pdfUrl);
             const pdf = await loadingTask.promise;
-            const page = await pdf.getPage(1);
-            const textContent = await page.getTextContent();
-            let rawText = textContent.items.map(item => item.str).join("\n");
-            testData = parsePDF(rawText);
+            let text = "";
+            for (let i = 1; i <= pdf.numPages; i++) {
+                const page = await pdf.getPage(i);
+                const textContent = await page.getTextContent();
+                text += textContent.items.map(item => item.str).join("\n") + "\n";
+            }
+            testData = parsePDF(text);
             selectedQuestions = testData.sort(() => Math.random() - 0.5).slice(0, 50);
             selectedQuestions.forEach((q, index) => {
                 correctAnswers[`q${index}`] = q.correct;
@@ -68,13 +72,14 @@
             currentQuestionIndex = 0;
             showQuestion();
         } catch (error) {
-            console.error("PDF yuklanmadi", error);
+            console.error("PDF yuklanmadi yoki noto‘g‘ri format", error);
+            alert("PDF-faylni yuklashda xatolik yuz berdi. Iltimos, qaytadan urinib ko‘ring.");
         }
     }
 
     function parsePDF(data) {
         let questions = [];
-        let lines = data.split("\n");
+        let lines = data.split("\n").map(line => line.trim()).filter(line => line);
         for (let i = 0; i < lines.length; i++) {
             if (lines[i].includes("?")) {
                 let answers = [lines[i + 1], lines[i + 2], lines[i + 3], lines[i + 4]].filter(Boolean);
