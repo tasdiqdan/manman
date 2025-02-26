@@ -57,7 +57,8 @@
 
     async function loadPDF(pdfUrl) {
         try {
-            const loadingTask = pdfjsLib.getDocument(pdfUrl);
+            console.log("PDF yuklanmoqda: ", pdfUrl);
+            const loadingTask = pdfjsLib.getDocument({ url: pdfUrl, cMapUrl: "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.12.313/cmaps/", cMapPacked: true });
             const pdf = await loadingTask.promise;
             let text = "";
             for (let i = 1; i <= pdf.numPages; i++) {
@@ -65,7 +66,14 @@
                 const textContent = await page.getTextContent();
                 text += textContent.items.map(item => item.str).join(" \n ") + "\n";
             }
+            if (!text.trim()) {
+                throw new Error("PDF dan hech qanday matn olinmadi");
+            }
+            console.log("PDF dan chiqarilgan matn:", text);
             testData = parsePDF(text);
+            if (testData.length === 0) {
+                throw new Error("Savollar topilmadi");
+            }
             selectedQuestions = testData.sort(() => Math.random() - 0.5).slice(0, 50);
             selectedQuestions.forEach((q, index) => {
                 correctAnswers[`q${index}`] = q.correct;
@@ -87,10 +95,13 @@
                 let correct = answers.find(a => a.includes("*"));
                 if (correct) correct = correct.replace("*", "").trim();
                 shuffleArray(answers);
-                questions.push({ question: lines[i], answers, correct });
+                if (answers.length === 4) {
+                    questions.push({ question: lines[i], answers, correct });
+                }
                 i += 4;
             }
         }
+        console.log("Ajratilgan savollar:", questions);
         return questions;
     }
 
@@ -132,22 +143,8 @@
             currentQuestionIndex++;
             showQuestion();
         } else {
-            showResults();
+            alert("Test yakunlandi!");
         }
-    }
-
-    function showResults() {
-        let correctCount = 0;
-        let resultDiv = document.getElementById("result");
-        selectedQuestions.forEach((q, index) => {
-            if (userAnswers[`q${index}`] === correctAnswers[`q${index}`]) {
-                correctCount++;
-            }
-        });
-        let totalScore = (correctCount / selectedQuestions.length) * 100;
-        resultDiv.innerHTML = `<p>Sizning natijangiz: ${totalScore.toFixed(2)}%</p>`;
-        document.getElementById("testContainer").style.display = "none";
-        document.getElementById("resultContainer").style.display = "block";
     }
 </script>
 
