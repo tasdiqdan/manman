@@ -3,78 +3,237 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PDF Ma'lumotlarni O'qish va Ishlov Berish</title>
+  <title>PDF dan Test Yaratish</title>
   <!-- PDF.js kutubxonasini ulash -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.12.313/pdf.min.js"></script>
   <style>
     body { font-family: Arial, sans-serif; margin: 20px; }
-    #pdfContent { white-space: pre-wrap; margin-top: 20px; padding: 10px; border: 1px solid #ccc; }
+    .hidden { display: none; }
+    .option { padding: 10px; margin: 5px; background-color: #f0f0f0; border: 1px solid #ccc; cursor: pointer; }
+    .correct { background-color: #c8e6c9; }
+    .wrong { background-color: #ffcdd2; }
+    #timer { font-size: 20px; font-weight: bold; }
   </style>
 </head>
 <body>
-  <h1>PDF Ma'lumotlarni O'qish va Ishlov Berish</h1>
-  <p>PDF faylni yuklash va undagi savollarni ajratib olish uchun "PDF Yuklash" tugmasini bosing.</p>
-  <button id="loadPdf">PDF Yuklash</button>
-  <div id="pdfContent"></div>
+  <h1>PDF dan Test Yaratish</h1>
+  <!-- PDF yuklash uchun forma -->
+  <div id="pdf-loader">
+    <p>GitHub repozitoriyangizdagi PDF faylning raw URL manzilini kiriting:</p>
+    <input type="text" id="pdfUrlInput" placeholder="Masalan, https://raw.githubusercontent.com/username/repo/main/tests.pdf" size="60">
+    <button id="loadPdfBtn">PDF Yuklash</button>
+  </div>
+
+  <!-- (Ixtiyoriy) Yuklangan PDF matnini ko'rsatish uchun konteyner -->
+  <div id="pdfContent" class="hidden"></div>
+
+  <!-- Test interfeysi -->
+  <div id="test-container" class="hidden">
+    <div id="timer">60</div>
+    <div id="question-container">
+      <h2 id="question-text"></h2>
+      <div id="options-container"></div>
+    </div>
+    <button id="next-btn" class="hidden">Keyingi Savol</button>
+  </div>
+
+  <!-- Yakuniy natija -->
+  <div id="result-container" class="hidden">
+    <h2>Test Yakunlandi</h2>
+    <p id="result-text"></p>
+  </div>
 
   <script>
-    // GitHub repozitoriyangizdagi PDF faylning raw URL manzili.
-    // Masalan: https://raw.githubusercontent.com/username/repo/main/tests.pdf
-    const pdfUrl = 'https://raw.githack.com/tasdiqdan/manman/9b07a59d24827e3db9fb28dff02f9ddeb5811817/pdfs/Dezinfektologiya.pdf';
+    // Global o'zgaruvchilar
+    let selectedQuestions = [];
+    let currentQuestionIndex = 0;
+    let score = 0;
+    let timerInterval;
+    let timeLeft = 60;
 
-    const loadPdfBtn = document.getElementById('loadPdf');
+    const loadPdfBtn = document.getElementById('loadPdfBtn');
+    const pdfUrlInput = document.getElementById('pdfUrlInput');
     const pdfContentDiv = document.getElementById('pdfContent');
 
+    const testContainer = document.getElementById('test-container');
+    const questionText = document.getElementById('question-text');
+    const optionsContainer = document.getElementById('options-container');
+    const nextBtn = document.getElementById('next-btn');
+    const timerDisplay = document.getElementById('timer');
+
+    const resultContainer = document.getElementById('result-container');
+    const resultText = document.getElementById('result-text');
+
+    // PDF yuklash tugmasi bosilganda
     loadPdfBtn.addEventListener('click', () => {
-      loadPdf();
+      const pdfUrl = pdfUrlInput.value.trim();
+      if (pdfUrl === '') {
+        alert("Iltimos, PDF fayl URL ni kiriting.");
+        return;
+      }
+      loadPdf(pdfUrl);
     });
 
-    async function loadPdf() {
+    // PDF ni yuklash va sahifalar matnini olish
+    async function loadPdf(pdfUrl) {
       try {
-        // PDF faylni yuklash
         const loadingTask = pdfjsLib.getDocument(pdfUrl);
         const pdf = await loadingTask.promise;
         let fullText = '';
 
-        // Har bir sahifadan matn ajratib olish
         for (let pageNum = 1; pageNum <= pdf.numPages; pageNum++) {
           const page = await pdf.getPage(pageNum);
           const textContent = await page.getTextContent();
-          const pageText = textContent.items.map(item => item.str).join(' ');
+          // Sahifadagi matnlarni yangi qatordan ajratib olish
+          const pageText = textContent.items.map(item => item.str).join('\n');
           fullText += pageText + '\n\n';
         }
+        
+        // (Ixtiyoriy) PDF dan olingan matnni ko'rsatish
+        // pdfContentDiv.textContent = fullText;
+        // pdfContentDiv.classList.remove('hidden');
 
-        // Hamma matnni ekranga chiqarish
-        pdfContentDiv.textContent = fullText;
-
-        // Savollarni ajratib olish funksiyasini chaqirish
+        // Savollarni ajratib olish va test uchun tayyorlash
         processQuestions(fullText);
       } catch (error) {
-        console.error('PDF yuklashda xatolik:', error);
-        pdfContentDiv.textContent = 'PDF yuklashda xatolik yuz berdi.';
+        console.error("PDF yuklashda xatolik:", error);
+        alert("PDF yuklashda xatolik yuz berdi.");
       }
     }
 
+    // PDF matnidan savollarni ajratib, test formatidagi ob'ektlar massivini yaratish.
+    // Format misoli:
+    // Q: Savol matni
+    // 1. Javob 1
+    // 2. Javob 2*
+    // 3. Javob 3
+    // 4. Javob 4
     function processQuestions(pdfText) {
-      // Misol: Agar savollar "Q:" bilan boshlansa
-      // Savollarni ajratish uchun oddiy regex: savollar "Q:" bilan boshlanib keyingi "Q:" yoki fayl oxirigacha davom etadi.
-      const questionPattern = /Q:\s*(.*?)\s*(?=Q:|$)/gs;
-      const questions = pdfText.match(questionPattern);
+      // Savollar "Q:" prefiksi bilan ajratiladi.
+      const rawQuestions = pdfText.split(/Q:/).slice(1);
+      const questions = [];
 
-      if (questions && questions.length > 0) {
-        console.log('Topilgan savollar:', questions);
-        // Masalan, savollar ro'yxatini ekranga chiqarish:
-        const questionsList = document.createElement('ol');
-        questions.forEach(q => {
-          const listItem = document.createElement('li');
-          listItem.textContent = q.trim();
-          questionsList.appendChild(listItem);
+      rawQuestions.forEach(rawQ => {
+        // Har bir savol blokini satrlarga ajratamiz
+        const lines = rawQ.split('\n').map(line => line.trim()).filter(line => line !== '');
+        if (lines.length < 5) {
+          // Yetarlicha ma'lumot bo'lmasa, bu blokni o'tkazamiz.
+          return;
+        }
+        const qText = lines[0]; // Birinchi satr – savol matni.
+        // Keyingi 4 satr – javob variantlari.
+        const opts = lines.slice(1, 5).map(opt => {
+          return {
+            text: opt.replace('*', '').replace(/^\d+[\.\)]/, '').trim(),
+            isCorrect: opt.includes('*')
+          };
         });
-        pdfContentDiv.appendChild(questionsList);
-      } else {
-        console.log('Hech qanday savol topilmadi.');
-        pdfContentDiv.textContent += '\nHech qanday savol topilmadi.';
+        questions.push({
+          question: qText,
+          options: opts
+        });
+      });
+
+      if (questions.length === 0) {
+        alert("Hech qanday savol topilmadi.");
+        return;
       }
+      
+      // Savollarni tasodifiy aralashtirib, maksimal 50 tasini olamiz
+      selectedQuestions = shuffleArray(questions).slice(0, 50);
+      
+      // Test interfeysini ishga tushiramiz
+      document.getElementById('pdf-loader').classList.add('hidden');
+      testContainer.classList.remove('hidden');
+      showQuestion();
+    }
+
+    // Har bir savolni ko'rsatish funksiyasi
+    function showQuestion() {
+      clearInterval(timerInterval);
+      timeLeft = 60;
+      timerDisplay.textContent = timeLeft;
+      const currentQuestion = selectedQuestions[currentQuestionIndex];
+
+      questionText.textContent = currentQuestion.question;
+
+      // Variantlarni aralashtirish
+      const shuffledOptions = shuffleArray([...currentQuestion.options]);
+      optionsContainer.innerHTML = '';
+      shuffledOptions.forEach(option => {
+        const btn = document.createElement('button');
+        btn.className = 'option';
+        btn.textContent = option.text;
+        btn.dataset.correct = option.isCorrect;
+        btn.addEventListener('click', selectOption);
+        optionsContainer.appendChild(btn);
+      });
+
+      nextBtn.classList.add('hidden');
+
+      // Taymerni ishga tushiramiz (60 soniya)
+      timerInterval = setInterval(() => {
+        timeLeft--;
+        timerDisplay.textContent = timeLeft;
+        if (timeLeft <= 0) {
+          clearInterval(timerInterval);
+          revealAnswers();
+          nextBtn.classList.remove('hidden');
+        }
+      }, 1000);
+    }
+
+    // Javob variantlari bosilganda
+    function selectOption(e) {
+      clearInterval(timerInterval);
+      const selectedBtn = e.target;
+      revealAnswers(selectedBtn);
+      nextBtn.classList.remove('hidden');
+    }
+
+    // To'g'ri va noto'g'ri javob variantlarini ko'rsatish
+    function revealAnswers(selectedBtn = null) {
+      const optionButtons = document.querySelectorAll('.option');
+      optionButtons.forEach(btn => {
+        const isCorrect = btn.dataset.correct === 'true';
+        if (isCorrect) {
+          btn.classList.add('correct');
+        } else {
+          btn.classList.add('wrong');
+        }
+        btn.disabled = true;
+      });
+      if (selectedBtn && selectedBtn.dataset.correct === 'true') {
+        score++;
+      }
+    }
+
+    nextBtn.addEventListener('click', nextQuestion);
+    function nextQuestion() {
+      currentQuestionIndex++;
+      if (currentQuestionIndex >= selectedQuestions.length) {
+        endTest();
+      } else {
+        showQuestion();
+      }
+    }
+
+    // Test tugagach, yakuniy natijani ko'rsatish
+    function endTest() {
+      testContainer.classList.add('hidden');
+      resultContainer.classList.remove('hidden');
+      resultText.textContent = `Sizning natijangiz: ${score} ta to'g'ri javob / ${selectedQuestions.length} savol.`;
+    }
+
+    // Array elementlarini tasodifiy aralashtirish funksiyasi
+    function shuffleArray(array) {
+      let currentIndex = array.length, randomIndex;
+      while (currentIndex !== 0) {
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex--;
+        [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
+      }
+      return array;
     }
   </script>
 </body>
