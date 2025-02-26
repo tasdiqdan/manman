@@ -8,7 +8,7 @@
     <style>
         body { font-family: Arial, sans-serif; text-align: center; background-color: #f4f4f4; padding: 20px; }
         .container { background: white; padding: 20px; border-radius: 10px; box-shadow: 0px 0px 10px rgba(0,0,0,0.1); width: 500px; margin: auto; }
-        .question { font-size: 18px; margin: 20px 0; }
+        .question { font-size: 18px; margin: 20px 0; text-align: left; }
         .timer { font-size: 18px; font-weight: bold; color: red; }
         button { padding: 10px 20px; border: none; background: #28a745; color: white; font-size: 18px; border-radius: 5px; cursor: pointer; }
         button:hover { background: #218838; }
@@ -62,7 +62,7 @@
             for (let i = 1; i <= pdf.numPages; i++) {
                 const page = await pdf.getPage(i);
                 const textContent = await page.getTextContent();
-                text += textContent.items.map(item => item.str).join("\n") + "\n";
+                text += textContent.items.map(item => item.str).join(" \n ") + "\n";
             }
             testData = parsePDF(text);
             selectedQuestions = testData.sort(() => Math.random() - 0.5).slice(0, 50);
