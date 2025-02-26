@@ -1,240 +1,149 @@
 <!DOCTYPE html>
 <html lang="uz">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PDF dan Test Yaratish</title>
-  <!-- PDF.js kutubxonasini ulash -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.12.313/pdf.min.js"></script>
-  <style>
-    body { font-family: Arial, sans-serif; margin: 20px; }
-    .hidden { display: none; }
-    .option { padding: 10px; margin: 5px; background-color: #f0f0f0; border: 1px solid #ccc; cursor: pointer; }
-    .correct { background-color: #c8e6c9; }
-    .wrong { background-color: #ffcdd2; }
-    #timer { font-size: 20px; font-weight: bold; }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; margin: 20px; }
+        .container { max-width: 600px; margin: auto; padding: 20px; border: 1px solid #ddd; border-radius: 10px; box-shadow: 2px 2px 10px rgba(0,0,0,0.1); }
+        .question { font-size: 18px; font-weight: bold; margin-bottom: 10px; }
+        .option { display: block; padding: 10px; margin: 5px; background: #f0f0f0; border: 1px solid #ccc; cursor: pointer; border-radius: 5px; }
+        .correct { background-color: #c8e6c9; }
+        .wrong { background-color: #ffcdd2; }
+        #result { font-size: 20px; font-weight: bold; margin-top: 20px; }
+        button { padding: 10px 15px; font-size: 16px; margin-top: 10px; cursor: pointer; border: none; border-radius: 5px; background-color: #007bff; color: white; }
+        button:disabled { background-color: #aaa; cursor: not-allowed; }
+        #timer { font-size: 18px; font-weight: bold; margin-bottom: 10px; }
+    </style>
 </head>
 <body>
-  <h1>PDF dan Test Yaratish</h1>
-  <!-- PDF yuklash uchun forma -->
-  <div id="pdf-loader">
-    <p>GitHub repozitoriyangizdagi PDF faylning raw URL manzilini kiriting:</p>
-    <input type="text" id="pdfUrlInput" placeholder="Masalan, https://raw.githack.com/tasdiqdan/manman/fdf0907460395e777b7e898391ac11224fe1082f/pdfs/Dezinfektologiya.pdf" size="60">
-    <button id="loadPdfBtn">PDF Yuklash</button>
-  </div>
+    <h1>Quiz Test</h1>
 
-  <!-- (Ixtiyoriy) Yuklangan PDF matnini ko'rsatish uchun konteyner -->
-  <div id="pdfContent" class="hidden"></div>
-
-  <!-- Test interfeysi -->
-  <div id="test-container" class="hidden">
-    <div id="timer">60</div>
-    <div id="question-container">
-      <h2 id="question-text"></h2>
-      <div id="options-container"></div>
+    <div id="quiz-container" class="container">
+        <p id="timer">Vaqt: 60 soniya</p>
+        <p id="question" class="question"></p>
+        <div id="options"></div>
+        <button id="next-btn" onclick="nextQuestion()" disabled>Keyingi</button>
     </div>
-    <button id="next-btn" class="hidden">Keyingi Savol</button>
-  </div>
 
-  <!-- Yakuniy natija -->
-  <div id="result-container" class="hidden">
-    <h2>Test Yakunlandi</h2>
-    <p id="result-text"></p>
-  </div>
+    <p id="result" class="hidden"></p>
 
-  <script>
-    // Global o'zgaruvchilar
-    let selectedQuestions = [];
-    let currentQuestionIndex = 0;
-    let score = 0;
-    let timerInterval;
-    let timeLeft = 60;
+    <script>
+        // ✅ **Test savollari (HTML kod ichida qo'lda kiritiladi)**
+        const allQuestions = [
+            { question: "Yerning sun’iy yo‘ldoshi qaysi?", options: ["Quyosh", "Oy", "Yupiter", "Venera"], correct: 1 },
+            { question: "2 + 2 = ?", options: ["3", "4", "5", "6"], correct: 1 },
+            { question: "O‘zbekistonning poytaxti qaysi shahar?", options: ["Buxoro", "Toshkent", "Samarqand", "Urganch"], correct: 1 },
+            { question: "Eng katta okean?", options: ["Atlantika", "Hind", "Tinch", "Shimoliy Muz"], correct: 2 },
+            { question: "Elementlarning periodik jadvalini kim yaratgan?", options: ["Nyuton", "Mendeleyev", "Eynshteyn", "Tesla"], correct: 1 },
+            { question: "Suvning formulasi?", options: ["CO2", "H2O", "O2", "N2"], correct: 1 },
+            { question: "Eng katta sayyora?", options: ["Mars", "Yupiter", "Venera", "Merkuriy"], correct: 1 },
+            { question: "Insulin qaysi a'zoda ishlab chiqariladi?", options: ["Jigar", "Buyrak", "Me’da osti bezi", "Oshqozon"], correct: 2 },
+            { question: "O‘zbekistonda mustaqillik qachon e’lon qilingan?", options: ["1990", "1991", "1992", "1989"], correct: 1 },
+            { question: "Eng katta qit’a?", options: ["Afrika", "Yevropa", "Osiyo", "Amerika"], correct: 2 }
+        ];
 
-    const loadPdfBtn = document.getElementById('loadPdfBtn');
-    const pdfUrlInput = document.getElementById('pdfUrlInput');
-    const pdfContentDiv = document.getElementById('pdfContent');
+        let selectedQuestions = [];
+        let currentQuestionIndex = 0;
+        let score = 0;
+        let timerInterval;
+        let timeLeft = 60;
 
-    const testContainer = document.getElementById('test-container');
-    const questionText = document.getElementById('question-text');
-    const optionsContainer = document.getElementById('options-container');
-    const nextBtn = document.getElementById('next-btn');
-    const timerDisplay = document.getElementById('timer');
-
-    const resultContainer = document.getElementById('result-container');
-    const resultText = document.getElementById('result-text');
-
-    // PDF yuklash tugmasi bosilganda
-    loadPdfBtn.addEventListener('click', () => {
-      const pdfUrl = pdfUrlInput.value.trim();
-      if (pdfUrl === '') {
-        alert("Iltimos, PDF fayl URL ni kiriting.");
-        return;
-      }
-      loadPdf(pdfUrl);
-    });
-
-    // PDF ni yuklash va sahifalar matnini olish
-    async function loadPdf(pdfUrl) {
-      try {
-        const loadingTask = pdfjsLib.getDocument(pdfUrl);
-        const pdf = await loadingTask.promise;
-        let fullText = '';
-
-        for (let pageNum = 1; pageNum <= pdf.numPages; pageNum++) {
-          const page = await pdf.getPage(pageNum);
-          const textContent = await page.getTextContent();
-          // Sahifadagi matnlarni yangi qatordan ajratib olish
-          const pageText = textContent.items.map(item => item.str).join('\n');
-          fullText += pageText + '\n\n';
+        function startQuiz() {
+            selectedQuestions = shuffleArray(allQuestions).slice(0, 50); // 50 ta savol tanlash
+            document.getElementById('result').classList.add('hidden');
+            currentQuestionIndex = 0;
+            score = 0;
+            showQuestion();
         }
-        
-        // (Ixtiyoriy) PDF dan olingan matnni ko'rsatish
-        // pdfContentDiv.textContent = fullText;
-        // pdfContentDiv.classList.remove('hidden');
 
-        // Savollarni ajratib olish va test uchun tayyorlash
-        processQuestions(fullText);
-      } catch (error) {
-        console.error("PDF yuklashda xatolik:", error);
-        alert("PDF yuklashda xatolik yuz berdi.");
-      }
-    }
+        function showQuestion() {
+            if (currentQuestionIndex >= selectedQuestions.length) {
+                showResult();
+                return;
+            }
 
-    // PDF matnidan savollarni ajratib, test formatidagi ob'ektlar massivini yaratish.
-    // Format misoli:
-    // Q: Savol matni
-    // 1. Javob 1
-    // 2. Javob 2*
-    // 3. Javob 3
-    // 4. Javob 4
-    function processQuestions(pdfText) {
-      // Savollar "Q:" prefiksi bilan ajratiladi.
-      const rawQuestions = pdfText.split(/Q:/).slice(1);
-      const questions = [];
+            clearInterval(timerInterval);
+            timeLeft = 60;
+            document.getElementById('timer').textContent = `Vaqt: ${timeLeft} soniya`;
 
-      rawQuestions.forEach(rawQ => {
-        // Har bir savol blokini satrlarga ajratamiz
-        const lines = rawQ.split('\n').map(line => line.trim()).filter(line => line !== '');
-        if (lines.length < 5) {
-          // Yetarlicha ma'lumot bo'lmasa, bu blokni o'tkazamiz.
-          return;
+            timerInterval = setInterval(() => {
+                timeLeft--;
+                document.getElementById('timer').textContent = `Vaqt: ${timeLeft} soniya`;
+                if (timeLeft <= 0) {
+                    clearInterval(timerInterval);
+                    revealAnswers();
+                }
+            }, 1000);
+
+            const currentQuestion = selectedQuestions[currentQuestionIndex];
+            document.getElementById('question').textContent = currentQuestion.question;
+            const optionsContainer = document.getElementById('options');
+            optionsContainer.innerHTML = '';
+
+            const shuffledOptions = shuffleArray([...currentQuestion.options]);
+            shuffledOptions.forEach((option, index) => {
+                const button = document.createElement('button');
+                button.textContent = option;
+                button.classList.add('option');
+                button.onclick = () => selectOption(button, currentQuestion.options.indexOf(option));
+                optionsContainer.appendChild(button);
+            });
+
+            document.getElementById('next-btn').disabled = true;
         }
-        const qText = lines[0]; // Birinchi satr – savol matni.
-        // Keyingi 4 satr – javob variantlari.
-        const opts = lines.slice(1, 5).map(opt => {
-          return {
-            text: opt.replace('*', '').replace(/^\d+[\.\)]/, '').trim(),
-            isCorrect: opt.includes('*')
-          };
-        });
-        questions.push({
-          question: qText,
-          options: opts
-        });
-      });
 
-      if (questions.length === 0) {
-        alert("Hech qanday savol topilmadi.");
-        return;
-      }
-      
-      // Savollarni tasodifiy aralashtirib, maksimal 50 tasini olamiz
-      selectedQuestions = shuffleArray(questions).slice(0, 50);
-      
-      // Test interfeysini ishga tushiramiz
-      document.getElementById('pdf-loader').classList.add('hidden');
-      testContainer.classList.remove('hidden');
-      showQuestion();
-    }
+        function selectOption(button, index) {
+            clearInterval(timerInterval);
+            document.querySelectorAll('.option').forEach(btn => btn.disabled = true);
+            const currentQuestion = selectedQuestions[currentQuestionIndex];
 
-    // Har bir savolni ko'rsatish funksiyasi
-    function showQuestion() {
-      clearInterval(timerInterval);
-      timeLeft = 60;
-      timerDisplay.textContent = timeLeft;
-      const currentQuestion = selectedQuestions[currentQuestionIndex];
+            if (index === currentQuestion.correct) {
+                button.classList.add('correct');
+                score++;
+            } else {
+                button.classList.add('wrong');
+            }
 
-      questionText.textContent = currentQuestion.question;
-
-      // Variantlarni aralashtirish
-      const shuffledOptions = shuffleArray([...currentQuestion.options]);
-      optionsContainer.innerHTML = '';
-      shuffledOptions.forEach(option => {
-        const btn = document.createElement('button');
-        btn.className = 'option';
-        btn.textContent = option.text;
-        btn.dataset.correct = option.isCorrect;
-        btn.addEventListener('click', selectOption);
-        optionsContainer.appendChild(btn);
-      });
-
-      nextBtn.classList.add('hidden');
-
-      // Taymerni ishga tushiramiz (60 soniya)
-      timerInterval = setInterval(() => {
-        timeLeft--;
-        timerDisplay.textContent = timeLeft;
-        if (timeLeft <= 0) {
-          clearInterval(timerInterval);
-          revealAnswers();
-          nextBtn.classList.remove('hidden');
+            document.getElementById('next-btn').disabled = false;
         }
-      }, 1000);
-    }
 
-    // Javob variantlari bosilganda
-    function selectOption(e) {
-      clearInterval(timerInterval);
-      const selectedBtn = e.target;
-      revealAnswers(selectedBtn);
-      nextBtn.classList.remove('hidden');
-    }
+        function revealAnswers() {
+            document.querySelectorAll('.option').forEach(btn => {
+                if (btn.textContent === selectedQuestions[currentQuestionIndex].options[selectedQuestions[currentQuestionIndex].correct]) {
+                    btn.classList.add('correct');
+                } else {
+                    btn.classList.add('wrong');
+                }
+                btn.disabled = true;
+            });
 
-    // To'g'ri va noto'g'ri javob variantlarini ko'rsatish
-    function revealAnswers(selectedBtn = null) {
-      const optionButtons = document.querySelectorAll('.option');
-      optionButtons.forEach(btn => {
-        const isCorrect = btn.dataset.correct === 'true';
-        if (isCorrect) {
-          btn.classList.add('correct');
-        } else {
-          btn.classList.add('wrong');
+            document.getElementById('next-btn').disabled = false;
         }
-        btn.disabled = true;
-      });
-      if (selectedBtn && selectedBtn.dataset.correct === 'true') {
-        score++;
-      }
-    }
 
-    nextBtn.addEventListener('click', nextQuestion);
-    function nextQuestion() {
-      currentQuestionIndex++;
-      if (currentQuestionIndex >= selectedQuestions.length) {
-        endTest();
-      } else {
-        showQuestion();
-      }
-    }
+        function nextQuestion() {
+            currentQuestionIndex++;
+            showQuestion();
+        }
 
-    // Test tugagach, yakuniy natijani ko'rsatish
-    function endTest() {
-      testContainer.classList.add('hidden');
-      resultContainer.classList.remove('hidden');
-      resultText.textContent = `Sizning natijangiz: ${score} ta to'g'ri javob / ${selectedQuestions.length} savol.`;
-    }
+        function showResult() {
+            document.getElementById('quiz-container').classList.add('hidden');
+            document.getElementById('result').classList.remove('hidden');
+            document.getElementById('result').textContent = `Test tugadi! Siz ${score} ta to‘g‘ri javob berdingiz.`;
+        }
 
-    // Array elementlarini tasodifiy aralashtirish funksiyasi
-    function shuffleArray(array) {
-      let currentIndex = array.length, randomIndex;
-      while (currentIndex !== 0) {
-        randomIndex = Math.floor(Math.random() * currentIndex);
-        currentIndex--;
-        [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
-      }
-      return array;
-    }
-  </script>
+        function shuffleArray(array) {
+            let currentIndex = array.length, randomIndex;
+            while (currentIndex !== 0) {
+                randomIndex = Math.floor(Math.random() * currentIndex);
+                currentIndex--;
+                [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
+            }
+            return array;
+        }
+
+        startQuiz();
+    </script>
 </body>
 </html>
