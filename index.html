@@ -1,0 +1,1749 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DMED Test Dasturi</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100..900&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Montserrat", sans-serif;
+        }
+
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background: #f4f4f4;
+            padding: 15px;
+        }
+
+        .popup-container {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: 0.2s ease;
+            padding: 15px;
+            background: rgba(0,0,0,0.5);
+            z-index: 100;
+        }
+
+        .popup-container.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .popup-container .quiz-box {
+            position: relative;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.13);
+            transform: translateY(-50px);
+            transition: all 0.4s ease-out;
+            width: 100%;
+            max-width: 500px;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .popup-container.active .quiz-box {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Quiz Configuration Stylings */
+        .config-container {
+            padding: 25px;
+            text-align: center;
+        }
+
+        .config-container .config-title {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: #5145BA;
+        }
+
+        .config-container .config-option {
+            margin-top: 25px;
+        }
+
+        .config-option .option-title {
+            font-weight: 500;
+            font-size: 1.125rem;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .config-option .category-options {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .config-option button {
+            padding: 12px 20px;
+            font-size: 0.938rem;
+            color: #000;
+            cursor: pointer;
+            font-weight: 500;
+            border-radius: 6px;
+            background: #fff;
+            border: 1px solid #9B8FFF;
+            transition: 0.3s ease;
+            min-width: 60px;
+        }
+
+        .config-option button.active {
+            color: #5145BA;
+            border-color: #5145BA;
+            background: #dfdafd;
+        }
+
+        .config-option button:hover {
+            background: #dad5fd;
+        }
+
+        .config-container .start-quiz-btn,
+        .quiz-footer .next-question-btn,
+        .result-container .try-again-btn {
+            color: #fff;
+            border: none;
+            font-weight: 500;
+            background: #5145BA;
+            padding: 13px 25px;
+            cursor: pointer;
+            font-size: 1rem;
+            border-radius: 6px;
+            transition: background 0.3s ease;
+            margin-top: 20px;
+            width: 100%;
+            max-width: 200px;
+        }
+
+        .config-container .start-quiz-btn:hover,
+        .quiz-footer .next-question-btn:hover,
+        .result-container .try-again-btn:hover {
+            background: #403795;
+        }
+
+        /* Quiz Container Stylings */
+        .quiz-container {
+            width: 100%;
+        }
+
+        .quiz-container .quiz-header {
+            display: flex;
+            padding: 15px 20px;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.09);
+            position: sticky;
+            top: 0;
+            background: white;
+            z-index: 10;
+        }
+
+        .quiz-header .quiz-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #5145BA;
+        }
+
+        .quiz-header .quiz-timer {
+            display: flex;
+            color: #fff;
+            gap: 5px;
+            align-items: center;
+            background: #32313C;
+            border-radius: 6px;
+            padding: 8px 12px;
+            font-weight: 600;
+        }
+
+        .quiz-header .quiz-timer span {
+            font-size: 1.2rem;
+        }
+
+        .quiz-container .quiz-content {
+            padding: 20px;
+            overflow-y: auto;
+        }
+        
+        .quiz-content .question-image {
+            width: 100%;
+            max-height: 200px;
+            object-fit: contain;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            display: none;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .quiz-content .question-text {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #333;
+            line-height: 1.4;
+        }
+
+        .quiz-content .answer-options {
+            list-style: none;
+            display: flex;
+            gap: 12px;
+            margin-top: 15px;
+            flex-direction: column;
+        }
+
+        .quiz-content .answer-option {
+            display: flex;
+            cursor: pointer;
+            align-items: center;
+            font-weight: 500;
+            border-radius: 6px;
+            padding: 12px 15px;
+            border: 1px solid #B5ACFF;
+            background: #F3F1FF;
+            justify-content: space-between;
+            transition: 0.3s ease;
+        }
+
+        .quiz-content .answer-option:hover {
+            background: #dad5fd;
+        }
+
+        .quiz-content .answer-option span {
+            display: block;
+            flex-shrink: 0;
+            margin-left: 10px;
+        }
+
+        .quiz-content .answer-option.correct {
+            border-color: #B7E1C1;
+            background: #D4EDDA;
+            color: #155724;
+        }
+
+        .quiz-content .answer-option.correct span {
+            color: #16AE56;
+        }
+
+        .quiz-content .answer-option.incorrect {
+            border-color: #F4BEC3;
+            background: #F8D7DA;
+            color: #721C24;
+        }
+
+        .quiz-content .answer-option.incorrect span {
+            color: #F23723;
+        }
+
+        /* Izoh uchun yangi stillar */
+        .quiz-content .explanation-btn {
+            background: #f0f0f0;
+            border: 1px solid #ddd;
+            color: #555;
+            padding: 8px 15px;
+            border-radius: 6px;
+            margin-top: 15px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            display: none; /* Boshlang'ich holatda yashirish */
+        }
+
+        .quiz-content .explanation-btn:hover {
+            background: #e0e0e0;
+        }
+
+        .quiz-content .explanation-text {
+            font-style: italic;
+            color: #555;
+            margin-top: 10px;
+            padding: 10px;
+            background: #f9f9f9;
+            border-radius: 6px;
+            border-left: 3px solid #5145BA;
+            display: none;
+        }
+
+        .quiz-container .quiz-footer {
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-top: 1px solid #C6C6C6;
+            position: sticky;
+            bottom: 0;
+            background: white;
+        }
+
+        .quiz-footer .question-status {
+            font-weight: 500;
+            color: #555;
+        }
+
+        .quiz-footer .question-status b {
+            font-weight: 600;
+            color: #5145BA;
+        }
+
+        .quiz-footer .next-question-btn {
+            display: inline-flex;
+            gap: 5px;
+            align-items: center;
+            padding: 10px 15px;
+        }
+
+        /* Quiz Result Stylings */
+        .result-container {
+            text-align: center;
+            padding: 30px 20px;
+            width: 100%;
+        }
+
+        .result-container .result-img {
+            width: 150px;
+            height: 150px;
+            margin: 0 auto;
+        }
+
+        .result-container .result-title {
+            margin-top: 20px;
+            font-size: 1.5rem;
+            color: #5145BA;
+        }
+
+        .result-container .result-message {
+            font-size: 1.1rem;
+            font-weight: 500;
+            margin-top: 15px;
+            color: #555;
+            line-height: 1.5;
+        }
+
+        .result-container .result-message b {
+            font-weight: 700;
+            color: #5145BA;
+        }
+
+        .result-container .result-conclusion {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 8px;
+            background: #f8f9fa;
+        }
+
+        .result-container .passed {
+            color: #155724;
+            background: #d4edda;
+        }
+
+        .result-container .failed {
+            color: #721c24;
+            background: #f8d7da;
+        }
+
+        /* Responsive adjustments */
+        @media (min-width: 768px) {
+            .config-container {
+                padding: 30px;
+            }
+            
+            .quiz-container .quiz-content {
+                padding: 25px 30px;
+            }
+            
+            .quiz-content .question-text {
+                font-size: 1.4rem;
+            }
+            
+            .quiz-header .quiz-title {
+                font-size: 1.5rem;
+            }
+            
+            .result-container {
+                padding: 40px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .config-container {
+                padding: 20px 15px;
+            }
+            
+            .config-option button {
+                padding: 10px 15px;
+                font-size: 0.9rem;
+            }
+            
+            .quiz-header {
+                padding: 12px 15px;
+            }
+            
+            .quiz-content {
+                padding: 15px;
+            }
+            
+            .quiz-content .question-text {
+                font-size: 1.2rem;
+            }
+            
+            .quiz-content .answer-option {
+                padding: 10px 12px;
+                font-size: 0.95rem;
+            }
+            
+            .quiz-footer {
+                padding: 12px 15px;
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .quiz-footer .next-question-btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="config-popup popup-container active">
+        <div class="config-container quiz-box">
+            <h2 class="config-title">Salom, Hamkasb</h2>
+
+            <div class="config-option">
+                <h4 class="option-title">Imtihonga tayyormisiz?</h4>
+                <div class="category-options">
+                    <button class="category-option active">DMED va Kompyuter savodxonligi</button>
+                </div>
+            </div>
+
+            <button class="start-quiz-btn">Testni boshlash</button>
+        </div>
+    </div>
+
+
+    <div class="quiz-popup popup-container">
+        <div class="quiz-container quiz-box">
+            <header class="quiz-header">
+                <h2 class="quiz-title">Savollar</h2>
+                <div class="quiz-timer">
+                    <span class="material-symbols-rounded">timer</span>
+                    <p class="timer-duration">15s</p>
+                </div>
+            </header>
+
+            <div class="quiz-content">
+                <img class="question-image" src="" alt="Question illustration">
+                <h1 class="question-text"></h1>
+                <ul class="answer-options"></ul>
+                <!-- Izoh uchun yangi elementlar -->
+                <button class="explanation-btn">Izoh</button>
+                <div class="explanation-text"></div>
+            </div>
+
+            <div class="quiz-footer">
+                <p class="question-status"></p>
+                <button class="next-question-btn">
+                    Keyingi
+                    <span class="material-symbols-rounded">arrow_right_alt</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quiz Result Popup -->
+    <div class="result-popup popup-container">
+        <div class="result-container quiz-box">
+            <div class="result-img">
+                <script src="https://cdn.lordicon.com/lordicon.js"></script>
+                <lord-icon src="https://cdn.lordicon.com/yqgsjpsy.json" trigger="hover" style="width:150px;height:150px">
+                </lord-icon>
+            </div>
+            <h2 class="result-title">Test yakunlandi!</h2>
+            <p class="result-message"></p>
+            <p class="result-conclusion"></p>
+            <button class="try-again-btn">Qayta boshlash</button>
+        </div>
+    </div>
+
+
+    <script>
+        const questions = [
+            {
+                category: "ortoped",
+                questions: [
+                    {
+                        question: "DMED tizimida avtorizatsiya qanday amalga oshiriladi?",
+                        options: [
+                            "Login va parol orqali",
+                            "JSHSHIR va himoya kodi orqali",
+                            "Telefon raqami orqali",
+                            "Elektron pochta orqali"
+                        ],
+                        correctAnswer: 1,
+                        explanation: " Bemor/xodim identifikatsiyasi JSHSHIR va bir martalik himoya kodi (2FA) orqali tasdiqlanadi. Bu login-parolga nisbatan xavfsizroq bo‘lib, shaxsiy ma’lumotlarning maxfiyligini ta’minlaydi."
+                    },
+                    {
+                        question: "DMED tizimini joriy etishning asosiy vazifalari qanday?",
+                        options: [
+                            "Elektron tibbiy hujjatlarni joriy etish",
+                            "Muassasa byudjetini nazorat qilish",
+                            "Dori vositalarini hisobga olish",
+                            "Barcha javoblar to'g'ri"
+                        ],
+                        correctAnswer: 3,
+                        explanation: "Elektron tibbiy hujjatlar, dori vositalarini hisobga olish va muassasa boshqaruv jarayonlarini optimallashtirish – barchasi DMEDning maqsadlariga kiradi."
+                    },
+                    {
+                        question: "DMED qo'llab-quvvatlash xizmati bilan qanday usullar orqali bog'lanish mumkin?",
+                        options: [
+                            "Telefon raqami va tizimdagi chat orqali",
+                            "Telefon raqami va Telegram bot orqali",
+                            "Telefon raqami, Telegram bot va chat orqali",
+                            "DMED tizimida qo'llab-quvvatlash xizmati yo'q"
+                        ],
+                        correctAnswer: 2,
+                        explanation: "Ko‘p kanalli yordam (call-center, tizimdagi chat, Telegram bot) muammo va savollarga tezkor javob berish imkonini yaratadi."
+                    },
+                    {
+                        question: "Bemor qaysi mobil ilova orqali shifokarga yozilishi mumkin? ",
+                        options: [
+                            "DMED PRO",
+                            "DMED",
+                            "DMED MONITOR",
+                            "MUHLISA"
+                        ],
+                        correctAnswer: 1,
+                        explanation: "‘DMED’ – bemorlar uchun. ‘DMED PRO’ va ‘DMED MONITOR’ asosan tibbiyot xodimlari va boshqaruv uchun mo‘ljallangan."
+                    },
+                    {
+                        question: "DMED tizimida bemorning yagona identifikatori (Med ID) qanday beriladi?",
+                        options: [
+                            "Bemor o'zi uchun Med ID tanlaydi",
+                            "Shifokor bemorga Med ID beradi",
+                            "Med ID tizim tomonidan avtomatik ravishda beriladi",
+                            "Tizimda Med ID yo'q"
+                        ],
+                        correctAnswer: 2,
+                        explanation: "Med ID – noyob identifikator bo‘lib, uni tizim avtomatik generatsiya qiladi. Foydalanuvchi yoki shifokor qo‘lda belgilamaydi."
+                    },
+                    {
+                        question: "Bemor o'zini poliklinikaga mustaqil ravishda biriktirishi mumkinmi?",
+                        options: [
+                            "Ha, mobil ilova yoki MyGov orqali",
+                            "Yo'q, faqat shifokor biriktira oladi"
+                        ],
+                        correctAnswer: 0,
+                        explanation: "Bemor hududiy biriktirishni mustaqil tanlay oladi. Bu fuqarolarga qulaylik va shaffoflik beradi."
+                    },
+                    {
+                        question: "DMED tizimida rasmiy hujjat aylanishi reestri sifatida qaysi internet-manba ishlatiladi?",
+                        options: [
+                            "docs.dmed.uz",
+                            "dmed.uz.docs",
+                            "documents.dmed.uz",
+                            "DMED tizimida hujjat aylanishi reestri yo'q"
+                        ],
+                        correctAnswer: 0,
+                        explanation: "Hujjat aylanishining yagona reestri sifatida maxsus domen ishlatiladi. Bu izchillik va huquqiy kuchni ta’minlaydi."
+                    },
+                    {
+                        question: "DMED tizimida qanday maxfiylik turi mavjud?",
+                        options: [
+                            "Shifokor darajasidagi maxfiylik",
+                            "Muassasa darajasidagi maxfiylik",
+                            "Tuman darajasidagi maxfiylik",
+                            "Tizimda maxfiylik yo'q"
+                        ],
+                        correctAnswer: 0,
+                        explanation: "Bemor ma’lumotlariga faqat vakolatli shifokor/xodim kirish huquqiga ega. Bu tibbiy sirni saqlash talablariga mos."
+                    },
+                    {
+                        question: "Bemor birinchi marta DTMga murojaat qilganda qabulga yozish qanday amalga oshiriladi?",
+                        options: [
+                            "Pasport ma'lumotlari/tug'ilganlik haqidagi guvohnoma bo'yicha",
+                            "Bemorning FISH/Med ID bo'yicha",
+                            "Med ID bo'yicha",
+                            "MyID bo'yicha"
+                        ],
+                        correctAnswer: 1,
+                        explanation: "Dastlabki qabulda bemor FISH yoki mavjud bo‘lsa Med ID orqali topiladi; bu aniq identifikatsiyani ta’minlaydi."
+                    },
+                    {
+                        question: "Bemorni qayta qabulga yozish uchun qanday ma'lumotlar zarur?",
+                        options: [
+                            "Med ID/MyID",
+                            "Med ID/tug'ilganlik haqidagi guvohnoma/pasport",
+                            "MyID/Med ID/bemorning FISH",
+                            "Pasport/tug'ilganlik haqidagi guvohnoma"
+                        ],
+                        correctAnswer: 1,
+                        explanation: "Qayta qabulda shaxsni tasdiqlovchi hujjat yoki tizimdagi noyob identifikator (Med ID) talab qilinadi."
+                    },
+                    {
+                        question: "Birinchi tashrif paytida bemorning rasmini qanday to'g'ri olish kerak?",
+                        options: [
+                            "MyID bo'limiga o'tib, 'bemorni fotoga olish' tugmasini bosish",
+                            "Bemorni topish, 'yangilash' tugmasini bosish, keyin bemorni fotoga olish",
+                            "Bemorni topish, 'fotoni yangilash' tugmasini bosish",
+                            "Barcha javoblar to'g'ri"
+                        ],
+                        correctAnswer: 3,
+                        explanation: "Foto kiritishning bir nechta to‘g‘ri yo‘li bor; muhim jihat – bemor identifikatsiyasi uchun sifatli va aktual surat kiritish."
+                    },
+                    {
+                        question: "Hujjatlari yo'q bemorni qo'shishda qaysi maydonlarni to'ldirish kerak?",
+                        options: [
+                            "FISH/tug'ilgan sana/jins",
+                            "FISH/jins",
+                            "FISH/tug'ilgan sana",
+                            "Bunday imkon yo'q"
+                        ],
+                        correctAnswer: 0,
+                        explanation: "Minimal identifikatsiya talab qilinadi. Keyin hujjatlar paydo bo‘lgach ma’lumotlar yangilanadi."
+                    },
+                    {
+                        question: "Tizimda xorijiy bemor (norezident)ni qidirish qanday ma'lumotlar bo'yicha amalga oshiriladi?",
+                        options: [
+                            "Pasport ma'lumotlari bo'yicha",
+                            "FISH yoki tibbiy karta bo'yicha",
+                            "MyID bo'yicha",
+                            "To'g'ri javob yo'q"
+                        ],
+                        correctAnswer: 0,
+                        explanation: "Norezidentlarda JSHSHIR bo‘lgani uchun pasport – asosiy identifikatsiya manbai hisoblanadi"
+                    },
+                    {
+                        question: "'Qabullar-Aktiv' bo'limida bemorlarning qanday statuslari mavjud?",
+                        options: [
+                            "Taklif qilingan/qabulda",
+                            "Taklif qilingan/qabulda/navbatda",
+                            "Navbatda/qabulda",
+                            "Tugatilgan/bekor qilingan"
+                        ],
+                        correctAnswer: 1,
+                        explanation: "Uchta status real vaqt rejimida qabul jarayonini aks ettiradi: chaqirilgan, ko‘rikda yoki navbatda"
+                    },
+                    {
+                        question: "Reimbursatsiya va oddiy retsept o'rtasida qanday farq bor?",
+                        options: [
+                            "Oddiy retseptlarni bemor bepul oladi, reimursatsiyani o'z hisobiga sotib oladi",
+                            "Ikkala retseptni ham bemor Sug'urta fondi hisobiga bepul asosda oladi",
+                            "Reimbursatsiya retseptlari Sug'urta fondi hisobiga qoplanadi, oddiylarini bemor o'z hisobiga sotib olishga majbur",
+                            "To'g'ri javob yo'q"
+                        ],
+                        correctAnswer: 2,
+                        explanation: "Reimbursatsiya – moliyaviy qoplash mexanizmi; oddiy retseptlar esa odatda bemor hisobidan ta’minlanadi."
+                    },
+                    {
+                        question: "Reimbursatsiya retseptida 'Tabletkalar' chiqarish shakli bo'lgan preparatni bemorga qancha miqdorda yozish mumkin?",
+                        options: [
+                            "30 yoki 60 dona miqdorida",
+                            "30 donagacha miqdorida",
+                            "60 donagacha miqdorida",
+                            "Sug'urta fondi har bir konkret savdo nomi uchun belgilagan miqdorda"
+                        ],
+                        correctAnswer: 0,
+                        explanation: "Standartlashgan dozalar dorilar sarfini rejalash va nazorat qilishga yordam beradi."
+                    },
+                    {
+                        question: "Shifokor yoki amaliyotchi hamshira bemorni ko'rigini boshlash uchun qanday harakatlarni qilishi kerak?",
+                        options: [
+                            "'Qabullar-Aktiv' bo'limida bemorni topish, uni qabulga chaqirish, yangi murojaat epizodini yaratish",
+                            "'Qabullar-Aktiv' bo'limida bemorni topish, uni qabulga chaqirish, yangi murojaat epizodini yaratish yoki eskisini davom ettirish",
+                            "'Qabullar-Aktiv' bo'limida bemorni topish, qabulni boshlash, bemorni qabulga chaqirish, yangi murojaat epizodini yaratish yoki eskisini davom ettirish",
+                            "'Qabullar-Aktiv' bo'limida bemorni topish, uni qabulga chaqirish, qabulni boshlash, yangi murojaat epizodini yaratish yoki eskisini davom ettirish"
+                        ],
+                        correctAnswer: 3,
+                        explanation: "To‘g‘ri ish tartibi tibbiy yozuvlarning to‘liqligi va izchilligini ta’minlaydi."
+                    },
+                    {
+                        question: "Shifokor boshqa mutaxassisga yozilgan bemorni qabul qila oladimi?",
+                        options: [
+                            "Ha",
+                            "Yo'q"
+                        ],
+                        correctAnswer: 0,
+                        explanation: "Favqulodda holatlar yoki ish jarayonidagi zaruratlarda mos vakolat bo‘lsa qabul qilish mumkin."
+                    },
+                    {
+                        question: "Bemorni vaqtga emas, balki jonli navbatga yozish mumkinmi. Masalan, vaqtga barcha yozuvlar band bo'lsa?",
+                        options: [
+                            "Ha, bemorni jonli navbatga yozish mumkin, lekin faqat joriy sanaga",
+                            "Ha, bemorni jonli navbatga har qanday sanaga yozish mumkin",
+                            "Ha, lekin faqat shifokorda jonli navbat bo'yicha qabul funksiyasi yoqilgan bo'lsa",
+                            "Yo'q, jonli navbatga yozish mavjud emas, bemorni faqat vaqtga yozish mumkin"
+                        ],
+                        correctAnswer: 0,
+                        explanation: "Jonli navbat funksiyasi joriy kun doirasida qabulni tashkil qilishga xizmat qiladi."
+                    },
+                    {
+                        question: "Shifokor ko'rik paytida bemorni boshqa mutaxassisga yo'naltira oladimi?",
+                        options: [
+                            "Ha, oladi, murojaat epizodidagi '+Uchrashuv' tugmasi orqali",
+                            "Yo'q, bu faqat registratorga ruxsat etilgan"
+                        ],
+                        correctAnswer: 0,
+                        explanation: "Ko‘p tarmoqli yondashuv zarur bo‘lgan holatlarda shifokor bemorni tegishli mutaxassisga yo‘naltiradi."
+                    },
+                    {
+                        question: "Qanday davolash turi bilan yo'naltirish uchun direktor tasdig'i kerak emas?",
+                        options: [
+                            "Statsionar",
+                            "Ambulator"
+                        ],
+                        correctAnswer: 1,
+                        explanation: "Ambulator xizmatlar uchun odatda yuqori darajadagi ma’muriy tasdiq talab qilinmaydi; statsionarda esa ko‘pincha talab etiladi."
+                    },
+                    {
+                        question: "Gospitalizatsiya yo'naltirishisiz bemorni statsionarga rasmiylashtirishimkunmi?",
+                        options: [
+                            "Ha, bemorni yo'naltirishsiz rasmiylashtirish mumkin",
+                            "Yo'q, statsionarga rasmiylashtirish uchun mutlaqo yo'naltirish zarur"
+                        ],
+                        correctAnswer: 1,
+                        explanation: "Yo‘naltirish – qo‘yilgan diagnoz va ko‘rsatmaga asoslangan hujjat bo‘lib, statsionar qabulning asosidir."                    
+                    },
+                    {
+                        question: "Bemor profilida qanday ma'lumotlarni ko'rish mumkin?",
+                        options: [
+                            "Shaxsiy ma'lumotlar/pasport ma'lumotlari/manzil/boshqa",
+                            "Ish haqida/aloqa ma'lumotlari/hujjatlar",
+                            "Biriktirish/so'rovnomalar/qarindoshlar/o'lim haqida ma'lumot",
+                            "Barcha javoblar to'g'ri"
+                        ],
+                        correctAnswer: 3,
+                        explanation: "Profil: shaxsiy/pasport, manzil, ish/aloqa, hujjatlar, biriktirishlar, qarindoshlar va h.k. to‘liq ko‘lamdagi ma’lumotlarni o‘z ichiga oladi."                    
+                    },
+                    {
+                        question: "O'tkazilgan skrining ma'lumotlarini taxrirlash mumkinmi?",
+                        options: [
+                            "Ha, har qanday vaqtda mumkin",
+                            "Yo'q, mumkin emas",
+                            "Ha, lekin faqat to'ldirgandan keyin 24 soat ichida",
+                            "Ha, lekin faqat to'ldirgandan keyin bir soat ichida"
+                        ],
+                        correctAnswer: 1,
+                        explanation: "Skrining natijalari tibbiy-huquqiy ahamiyatga ega, audit izi saqlanishi uchun tahrir qilish cheklangan."                    
+                    },
+                    {
+                        question: "Bemorning antropometrik ma'lumotlari qaerga kiritiladi?",
+                        options: [
+                            "Kasallik tarixidagi 'Antropometriya' bo'limiga 'Yangilash' tugmasi orqali",
+                            "Murojaat epizodidagi 'Antropometriya' bo'limiga 'Yangilash' tugmasi orqali",
+                            "Tibbiy kartadagi 'Antropometriya' bo'limiga 'Yangilash' tugmasi orqali",
+                            "Profildagi 'Antropometriya' bo'limiga 'Yangilash' tugmasi orqali"
+                        ],
+                        correctAnswer: 1,
+                        explanation: "Antropometriya ko‘rsatkichlari har bir epizodga biriktiriladi; dinamikani kuzatish osonlashadi."                    
+                    },
+                    {
+                        question: "Shifokor bemorning ko'rik tarixini ko'ra oladimi?",
+                        options: [
+                            "Ha, bemor tibbiy kartasidagi 'Joriy ko'rik' bo'limida",
+                            "Ha, bemor tibbiy kartasidagi 'Diagnostika' bo'limida",
+                            "Ha, bemor tibbiy kartasidagi 'Ko'riklar' bo'limida",
+                            "Yo'q, ko'ra olmaydi"
+                        ],
+                        correctAnswer: 2,
+                        explanation: "Ko‘riklar bo‘limi – avvalgi tashriflar va ko‘riklar bo‘yicha izchil tarixni ko‘rsatadi."                    
+                    },
+                    {
+                        question: "Xodimlardan kimlar reimbursatsiya retseptlarini yoza oladi?",
+                        options: [
+                            "Oila shifokorlari",
+                            "Tor mutaxassislar",
+                            "Amaliyotchi hamshira",
+                            "Barcha shifokorlar"
+                        ],
+                        correctAnswer: 0,
+                        explanation: "Reimbursatsiya mexanizmi odatda birlamchi bo‘g‘in shifokorlari (oila shifokori) orqali yuritiladi; amaliyotchi hamshira retsept yozmaydi."                    
+                    },
+                    {
+                        question: "Bemorni patronaj rejasiga qo'shish uchun qanday harakatlarni qilish kerak?",
+                        options: [
+                            "'Patronaj-Rejalashtirish' bo'limida bemorni topish, amaliyotchi harnshirani tanlash, patronaj maqsadini ko'rsatish, belgi qo'yish",
+                            "'Patronaj-Rejalashtirilgan' bo'limida bemorni topish, amaliyotchi hamshirani tanlash, belgi qo'yish",
+                            "'Patronaj-Rejalashtirish' bo'limida bemorni topish, patronaj hamshirasini tanlash, patronaj maqsadini ko'rsatish, belgi qo'yish",
+                            "'Patronaj-Rejalashtirilgan' bo'limida bemorni topish, patronaj hamshirasini tanlash, patronaj maqsadini ko'rsatish, belgi qo'yish"
+                        ],
+                        correctAnswer: 2,
+                        explanation: "Patronaj – uy sharoitida kuzatuv va maslahatlar rejasini tuzish jarayonidir."                    
+                    },
+                    {
+                        question: "Bemorga bir vaqtning o'zida bir nechta analizni tayinlash mumkinmi?",
+                        options: [
+                            "Ha, turli guruhlardan bir nechta analizni birdan tanlash mumkin",
+                            "Faqat bitta guruh doirasida bir nechta analizni tanlash mumkin",
+                            "Har bir guruhdan bittadan analizni tanlash mumkin",
+                            "Yo'q, faqat bitta analizni tanlash mumkin"
+                        ],
+                        correctAnswer: 0,
+                        explanation: "Keng ko‘lamli diagnostika uchun bir necha laborator testlarni bir vaqtning o‘zida buyurish mumkin."                    
+                    },
+                    {
+                        question: "Fizioterapevtik kursni qo'shish uchun nima qilish kerak?",
+                        options: [
+                            "Yaratilgan davolash kursi sahifasida 'Davolash rejasini qo'shish' tugmasini bosish va 'Fizioterapiya'ni tanlash",
+                            "Murojaat epizodida '+ Fizioterapiya' tugmasini bosish",
+                            "Kasallik tarixida '+ Fizioterapiya' tugmasini bosish",
+                            "Bemorning tibbiy kartasidagi 'Davolash kursi' bo'limchasida 'Fizioterapiya' tugmasini bosish"
+                        ],
+                        correctAnswer: 0,
+                        explanation: "Fizioterapiya davolash kursining tarkibiy qismi sifatida qo‘shiladi; reja orqali seanslar va protokollar boshqariladi."                    
+                    },
+                    {
+                        question: "Bemorning tibbiy kartasidagi 'Joriy ko'rik' bo'limida 'Homiladorlik (Hisobga olish)' murojaat epizodi avtomatik yaratilishi uchun nima qilish kerak?",
+                        options: [
+                            "Bemorni homiladorlik hisobiga qo'yish",
+                            "Murojaat epizodida O00–O99 guruhidan (homiladorlik, tug'ish va tug'ishdan keyingi davr) diagnoz tanlash",
+                            "Bemorning tibbiy kartasida homilaor anketasini to'ldirish",
+                            "'Qabullar' bo'limida murojaat turini 'Homiladorlik (Hisobga olish)' tanlash"
+                        ],
+                        correctAnswer: 1,
+                        explanation: "Homiladorlik bilan bog‘liq MKB-10 (ICD-10) kodlari (O00–O99) tanlanganda tizim tegishli homiladorlik epizodini avtomatik yaratadi. Bu obstetrik kuzatuvni izchil yuritish uchun ishlatiladi."                    
+                    },
+                    {
+                        question: "Biksni qayta sterilizatsiyaga yuborish mumkinmi?",
+                        options: [
+                            "Ha, mumkin",
+                            "Ha, mumkin, lekin faqat yangi biks yaratib",
+                            "Ha, mumkin, lekin faqat ruxsat olgandan keyin",
+                            "Yo'q, mumkin emas"
+                        ],
+                        correctAnswer: 0,
+                        explanation: "Biks (sterilizatsiya konteyneri) qayta ishlovdan so‘ng yana sterilizatsiyaga yuborilishi mumkin. Tizimda har bir sikl bo‘yicha qayd va nazorat yuritiladi."                    
+                    },
+                    {
+                        question: "Bemorga qanday sog'liq guruhlarini ko'rsatish mumkin?",
+                        options: [
+                            "I-II guruh",
+                            "I-II-III guruhlar",
+                            "I-II-III-IV guruhlar",
+                            "To'g'ri javob yo'q"
+                        ],
+                        correctAnswer: 2,
+                        explanation: "DMEDda sog‘liq guruhlari toifalash tizimi kengaytirilgan (I–IV), bu profilaktik kuzatuv va dispanserizatsiya rejalarini to‘g‘ri belgilashga xizmat qiladi."                    
+                    },
+                    {
+                        question: "Tizimga yangi foydalanuvchi qanday qo'shiladi?",
+                        options: [
+                            "Buxgalteriya bo'limida",
+                            "Foydalanuvchilar/shifokorlar bo'limida",
+                            "Foydalanuvchilar/xodimlar bo'limida",
+                            "Xodimlar tizimga avtomatik qo'shiladi"
+                        ],
+                        correctAnswer: 2,
+                        explanation: "Yangi xodimni qo‘shish va unga rol/bo‘lim biriktirish “Foydalanuvchilar → Xodimlar” bo‘limida amalga oshiriladi. Buxgalteriya bo‘limi orqali emas."                    
+                    },
+                    {
+                        question: "Bitta xodimga bir nechta rolni biriktirish mumkinmi?",
+                        options: [
+                            "Ha",
+                            "Yo'q"
+                        ],
+                        correctAnswer: 0,
+                        explanation: "Bir xodim bir vaqtning o‘zida bir nechta vazifani bajarishi mumkin. Shu sababli unga mos ravishda bir nechta rolni biriktirish amaliyoti qo‘llanadi."                    
+                    },
+                    {
+                        question: "Jurnallarni qaysi bo'limda ko'rish mumkin?",
+                        options: [
+                            "Hujjatlar – jurnallar uchun ma'lumot kiritish bo'limida",
+                            "Hujjatlar – SSV hisobotlari bo'limida",
+                            "Hujjatlar – jurnallar bo'limida",
+                            "Tizimda bunday imkon yo'q"
+                        ],
+                        correctAnswer: 2,
+                        explanation: "Avtomatik va qo‘lda yuritiladigan jurnallar tegishli bo‘limda markazlashtirilgan holda ko‘rsatiladi."                    
+                    },
+                    {
+                        question: "Tizimda avtomatik shakllantirilgan jurnallardagi ma'lumotlar qancha tez-tez yangilanadi?",
+                        options: [
+                            "Ma'lumotlar tizimga kiritilgandan so'ng darhol yangilanadi",
+                            "Ma'lumotlar tizimga kiritilgandan so'ng 10 daqiqa ichida yangilanadi",
+                            "Ma'lumotlar tizimga kiritilgandan so'ng soat ichida yangilanadi",
+                            "Ma'lumotlar jurnalda keyingi kun ertalabigacha ko'rinadi"
+                        ],
+                        correctAnswer: 0,
+                        explanation: "Avtomatlashtirilgan jurnallar real vaqtga yaqin rejimda yangilanadi, bu operativ nazoratni ta’minlaydi."                    
+                    },
+                    {
+                        question: "Natijasi kiritilgan analizni bekor qilish mumkinmi?",
+                        options: [
+                            "Ha",
+                            "yo'q"
+                        ],
+                        correctAnswer: 1,
+                        explanation: "Natija tasdiqlangach, tahlilni bekor qilishga yo‘l qo‘yilmaydi. Xatolik bo‘lsa, qo‘shimcha qayd (korreksiya/qo‘shimcha natija) bilan tuzatish kiritiladi."                    
+                    },
+                    {
+                        question: "Hamshiraga qanday bo'limlar ochiq?",
+                        options: [
+                            "Qabullar/bemorlar/patronaj/statsionar",
+                            "Qabullar/bemorlar/patronaj/ombor",
+                            "Qabullar/bemorlar/patronaj",
+                            "Qabullar/bemorlar/patronaj/statsionar/ombor"
+                        ],
+                        correctAnswer: 3,
+                        explanation: "Hamshira uchun odatda qabul jarayoni, bemorlar ro‘yxati va patronaj modullari ochiq bo‘ladi. Hamshira deyilganda statsionar va ambulator poliklinika hamshiralari umumiy nazarda tutilgan bo'lsa statsionar va ombor variantini ham qo'shib belgilaymiz"                    
+                    },
+                    {
+                        question: "Davolash kursi paytida preparatga allergik reaktsiya ko'rsatilgandan so'ng amalni bekor qilish mumkinmi?",
+                        options: [
+                            "Ha, mumkin",
+                            "Ha, lekin faqat amal boshqa mutaxassis tomonidan tasdiqlanmagan bo'lsa",
+                            "Ha, lekin faqat ko'rsatilgandan keyin bir soat ichida",
+                            "Yo'q, mumkin emas"
+                        ],
+                        correctAnswer: 3,
+                        explanation: " Farmakoterapiyada xavfsizlik ustuvor. Allergik reaksiya qayd etilgach, tegishli buyruq/amal zudlik bilan bekor qilinadi va alternativ davo tanlanadi."                    
+                    },
+                    {
+                        question: "Agar shifokor murojaat epizodidan bemorni gospitalizatsiyaga yo'naltirsa, nimani qilmaganda u gospitalizatsiya yo'naltirishini yarata olmaydi?",
+                        options: [
+                            "Murojaat epizodida murojaat sababini ko'rsatmaganda",
+                            "Murojaat epizodida bemorni d-hisobga qo'ymaganda",
+                            "Murojaat epizodida MKB-10 bo'yicha hech bo'lmaganda bitta diagnoz qo'ymaganda",
+                            "Murojaat epizodidan yo'naltirish yaratish uchun hech qanday majburiy shartlar yo'q"
+                        ],
+                        correctAnswer: 2,
+                        explanation: "Yo‘naltirish hujjati klinik asosga ega bo‘lishi shart; kamida bitta MKB-10 diagnozi ko‘rsatilishi kerak."                    
+                    },
+                    {
+                        question: "Yo'naltirish yaratishda bir nechta gospitalizatsiya maqsadini tanlash mumkinmi?",
+                        options: [
+                            "Ha, mumkin",
+                            "Yo'q, mumkin emas"
+                        ],
+                        correctAnswer: 1,
+                        explanation: "Yo‘naltirish aniq va yagona maqsadga ega bo‘lishi kerak (masalan, davolash, diagnostika, operatsiya va h.k.)."                    
+                    },
+                    {
+                        question: "Poliklinikadan gospitalizatsiyaga yo'naltirilgan bemorlar tizimning qaysi bo'limiga tushadi?",
+                        options: [
+                            "Qabullar → Aktiv",
+                            "Statsionar → Jarayonda",
+                            "Qabul bo'limi → Yo'llanmalar",
+                            "Gospitalizatsiya → Yaratilgan"
+                        ],
+                        correctAnswer: 2,
+                        explanation: "Statsionar qabul xizmati yo‘llanmalarni markazlashtirilgan holda “Qabul bo‘limi → Yo‘llanmalar” orqali ko‘rib ishlaydi."                    
+                    },
+                    {
+                        question: "Shifokor qaysi statsionar ko'rigini faqat bir marta o'tkazisholadi?",
+                        options: [
+                            "Bo'limdagi ko'rik",
+                            "Birlamchi ko'rik",
+                            "Tor mutaxassis ko'rigi",
+                            "Barcha ko'riklarni necha marta bo'lishidan qilish mumkin"
+                        ],
+                        correctAnswer: 1,
+                        explanation: "Birlamchi ko‘rik – statsionarga yotqizilganda o‘tkaziladigan boshlang‘ich tekshiruv bo‘lib, takroran o‘tkazilmaydi."                    
+                    },
+                    {
+                        question: "Bemorni statsionarga rasmiylashtirganda nima avtomatik ochiladi?",
+                        options: [
+                            "Tibbiy karta",
+                            "Profil",
+                            "Kasallik tarixi",
+                            "Hech narsa ochilmaydi"
+                        ],
+                        correctAnswer: 2,
+                        explanation: "Gospitalizatsiya tasdiqlangach, statsionar davolanish uchun “Kasallik tarixi” (stasionar kartasi) avtomatik yaratiladi."                    
+                    },
+                    {
+                        question: "Kasallik tarixida 096 formasini ochish uchun qanday amalni bajarish kerak?",
+                        options: [
+                            "Bemorni tug'ruqxonaga joylashtirisn",
+                            "096 forma faqat tug'ruqxona va perznatal markazlarda avtomatik ochiladi",
+                            "Joylashtirshda gospitalizatsiya maqsadini faqat 'Tug'ish' tanlash",
+                            "Bemor ayol jinsida bo'lishi kerak"
+                        ],
+                        correctAnswer: 1,
+                        explanation: "096-shakl obstetrik muassasalarda (tug‘ruqxona/perinatal markaz) tegishli holatlarda avtomatik shakllanadi."                    
+                    },
+                    {
+                        question: "Bemorni statsionarning boshqa bo'limiga ko'chirish mumkinmi?",
+                        options: [
+                            "Ha, mumkin, agar boshqa bo'limda bo'sh palatalar bo'lsa",
+                            "Yo'q, mumkin emas, ko'chirish faqat joriy bo'lim ichida mavjud"
+                        ],
+                        correctAnswer: 0,
+                        explanation: "Tibbiy ko‘rsatma va joy mavjud bo‘lsa, bo‘limlararo transfer rasmiy tartibda amalga oshiriladi."                    
+                    },
+                    {
+                        question: "Gospitalizatsiyani tugatish uchun qaysi hujjat mutlaqo to'ldirilishi kerak?",
+                        options: [
+                            "Chiqarish epikrizi",
+                            "Klinik diagnoz asoslashi",
+                            "Bo'limdagi ko'rik",
+                            "Bosqichma-bosqich epikriz"
+                        ],
+                        correctAnswer: 0,
+                        explanation: "Statsionar davolanish yakunida chiqish epikrizi – majburiy yakuniy hujjat; unda diagnoz, o‘tkazilgan davolash, tavsiyalar ko‘rsatiladi."                    
+                    },
+                    {
+                        question: "Hamshira qaysi omborning tovar qoldiqlarini ko'rib chiqishga ruxsati bor?",
+                        options: [
+                            "Ombor mudiri uni biriktirgan omborning tovar qoldiqlari",
+                            "Markaziy ombordagi tovar qoldiqlari",
+                            "Barcha omborlarning tovar qoldiqlari",
+                            "Hamshirada biror omborning tovar qoldiqlarini ko'rib chiqish imkoniyati yo'q"
+                        ],
+                        correctAnswer: 0,
+                        explanation: "Rol va ruxsatlar bo‘yicha hamshira faqat o‘ziga biriktirilgan omborda qoldiqlarni ko‘rishi mumkin."                    
+                    },
+                    {
+                        question: "Laborant tahlil natijalarini tizimga kiritgandan so'ng nima qilish kerak?",
+                        options: [
+                            "Tahlilni tasdiqlash",
+                            "Tahlilni chop etish",
+                            "Tahlilni shifokorga yuborish",
+                            "Tahlilni bemorga yuborish"
+                        ],
+                        correctAnswer: 0,
+                        explanation: "Laborator natijalar verifikatsiyasi (tasdiqlash) – shifokorlarga ko‘rinishi va klinik qaror qabul qilish uchun majburiy bosqich."                    
+                    },
+                    {
+                        question: "Quyidagi qurilmalarning qaysi biri yordamida Internetga ulanish mumkin?",
+                        options: [
+                            "Printer, monitor, klaviatura",
+                            "Skaner, fleshka, proyektor",
+                            "Naushnik, karnay, mikrofon",
+                            "Modem, router, mobil modem, Wi-Fi adapter"
+                        ],
+                        correctAnswer: 3,
+                        explanation: "Modem - Telefon liniyasi, kabel yoki mobil operator orqali kelayotgan raqamli signallarni kompyuter tarmog‘iga moslashtiruvchi qurilma. Router-Internetni bir nechta qurilmaga (kompyuter, telefon, planshet) taqsimlovchi qurilma. Mobil modem-SIM-karta orqali mobil operator internetini ishlatib, kompyuter yoki boshqa qurilmaga ulash imkonini beradigan qurilma. Wifi adapter-Wi-Fi signalini qabul qilish uchun kompyuter yoki noutbukga ulanadigan qurilma."                    
+                    },
+                    {
+                        question: "Kursorni harakatlantirish uchun qaysi qurilma ishlatiladi?",
+                        options: [
+                            "Printer yoki skaner",
+                            "Monitor yoki proyektor",
+                            "USB fleshka yoki CD-ROM",
+                            "Sichqoncha yoki klaviaturaning strelka tugmalari"
+                        ],
+                        correctAnswer: 3,
+                        explanation: "Sichqoncha (Mouse)-Kompyuter ekranidagi kursorni harakatlantirish uchun ishlatiladigan eng asosiy qurilma. Klaviaturaning strelka tugmalari (Arrow keys)-Klaviaturada joylashgan ↑ ↓ ← → tugmalar orqali kursorni matn ichida yoki ekrandagi ob’ektlar bo‘ylab harakatlantirish mumkin."                    
+                    },
+                    {
+                        question: "Skanner nima?",
+                        options: [
+                            "Kompyuter uchun chiqish qurilmasi",
+                            "Faqat matnli fayllarni tahrirlovchi dastur",
+                            "Kompyuterda grafik tasvirlarni ko‘rsatadigan qurilma",
+                            "Qog‘oz hujjat yoki suratni raqamli formatga aylantiruvchi qurilma"
+                        ],
+                        correctAnswer: 3,
+                        explanation: "Qog‘ozdagi matn yoki rasmni elektron ko‘rinishga (raqamli faylga) o‘tkazuvchi qurilma. Vazifasi: Hujjat va suratlarni kompyuterga kiritish, nusxa olish va arxivlash uchun ishlatiladi."                    
+                    },
+                    {
+                        question: "Printer qaysi turga kiradi?",
+                        options: [
+                            "Kiritish (input) qurilmasi",
+                            "Aloqa (communication) qurilmasi",
+                            "Xotira (storage) qurilmasi",
+                            "Chiqish (output) qurilmasi"
+                        ],
+                        correctAnswer: 3,
+                        explanation: "Kompyuterda saqlangan matn yoki rasmni qog‘ozga chiqarib beradigan qurilma. Vazifasi: Elektron hujjatlarni qog‘oz ko‘rinishiga aylantiradi (chop etadi)."                    
+                    },
+                    {
+                        question: "Modem vazifasi nima?",
+                        options: [
+                            "Faqat printer bilan aloqa o‘rnatish uchun xizmat qiladi",
+                            "Kompyuter xotirasini tozalab, tezligini oshiradi",
+                            "Mahalliy fayllarni siqib, arxivga joylaydi",
+                            "Raqamli signalni analogga aylantirib internetga ulanishni ta’minlaydi"
+                        ],
+                        correctAnswer: 3,
+                        explanation: "Telefon liniyasi, kabel yoki mobil operator orqali kelayotgan raqamli signallarni kompyuter tarmog‘iga moslashtiruvchi qurilma. Vazifasi: Internet provayderidan kelayotgan signallarni (analog/raqamli) foydalanuvchi qurilmalari tushunadigan shaklga aylantiradi."                    
+                    },
+                    {
+                        question: "Operatsion tizimning asosiy vazifalaridan biri nima?",
+                        options: [
+                            "Faqat printerlar drayverini avtomatik o‘rnatish",
+                            "Internetda qidiruv tizimlarini boshqarish",
+                            "Faqat foydalanuvchi interfeysini bezash",
+                            "Resurslarni (CPU, xotira, disk, tarmoq) boshqarish"
+                        ],
+                        correctAnswer: 3,
+                        explanation: "CPU (Markaziy protsessor – Central Processing Unit)-Kompyuterning “miyasi”, barcha hisoblash va boshqaruv amallarini bajaradi. Xotira (RAM – tezkor xotira)-Dastur ishlayotgan paytda kerakli ma’lumotlarni tezkor qayta ishlash uchun xizmat qiladi. Disk (Doimiy xotira – HDD/SSD)-Ma’lumotlarni uzoq muddat saqlash uchun mo‘ljallangan qurilma. Tarmoq (Network)-Kompyuterni boshqa qurilmalar va internet bilan bog‘laydi."                    
+                    }, 
+                    {
+                        question: "Operatsion tizimlar turlariga misol keltiring.",
+                        options: [
+                            "Faqat Word, Excel, PowerPoint dasturlari",
+                            "Faqat printer va skaner qurilmalari",
+                            "Faqat brauzerlar va qidiruv tizimlari",
+                            "Desktop (Windows), Server (Windows Server), Mobil (Android/iOS), Real-Time (RTOS)"
+                        ],
+                        correctAnswer: 3,
+                        explanation: "Desktop (Windows)-Oddiy shaxsiy kompyuterlar uchun mo‘ljallangan operatsion tizim. Server (Windows Server)-Tarmoqqa ulangan ko‘plab foydalanuvchilarga xizmat ko‘rsatadigan maxsus operatsion tizim. Mobil (Android/iOS)-Smartfon va planshetlar uchun mo‘ljallangan operatsion tizimlar. Real-Time (RTOS – Real-Time Operating System)-Jarayonlarni aniq vaqt chegarasida bajaradigan operatsion tizim."                    
+                    },
+                    {
+                        question: "Microsoft Word dasturi nima uchun ishlatiladi?",
+                        options: [
+                            "Faqat internet sahifalarini ko‘rish uchun",
+                            "Grafik dizayn va video montaj qilish uchun",
+                            "Faqat elektron jadval hisob-kitoblarini yuritish uchun",
+                            "Matnli hujjatlarni yaratish, tahrirlash va formatlash uchun"
+                        ],
+                        correctAnswer: 3,
+                        explanation: "Matn hujjatlarini yozish, tahrirlash va formatlash uchun mo‘ljallangan dastur. Vazifasi: Hujjat yaratish, jadval va rasm qo‘shish, turli shrift va uslublarda matnni tayyorlash imkonini beradi."                    
+                    },
+                    {
+                        question: "Wordda fayl kengaytmasi qanday?",
+                        options: [
+                            ".xlsx",
+                            ".pptx",
+                            ".pdf",
+                            ".docx"
+                        ],
+                        correctAnswer: 3,
+                        explanation: "Microsoft Word dasturining barcha fayllari .docx bilan yakunlanadi."                    
+                    },
+                    {
+                        question: "Word dasturida yangi hujjat qanday yaratiladi?",
+                        options: [
+                            "Home → Paste menyusidan",
+                            "Design → Page Color menyusidan",
+                            "Insert → Symbol menyusidan",
+                            "File → New menyusidan"
+                        ],
+                        correctAnswer: 3,
+                        explanation: "Usuli: Menyudan File → New buyrug‘i tanlanadi. Natijasi: Yangi bo‘sh hujjat (Blank document) ochiladi yoki shablonlardan biri asosida hujjat yaratiladi. Oddiy qilib aytganda, File → New orqali Word’da yangi hujjat ochiladi."                    
+                    },
+                    {
+                        question: "Ctrl + B tugmalari nima vazifa bajaradi?",
+                        options: [
+                            "Matnni kursiv (italic qiladi)",
+                            "Matn ostiga chiziq chizadi (underline)",
+                            "Matn rangini o‘zgartiradi",
+                            "Matnni qalin (bold  qiladi)"
+                        ],
+                        correctAnswer: 3,
+                        explanation: "Ta’rifi: Matnni qalin (Bold) ko‘rinishda chiqarish uchun ishlatiladigan klaviatura yorlig‘i. Vazifasi: Belgilangan matnni tezda qalinlashtirish yoki qalinlikni olib tashlash."                    
+                    },
+                    {
+                        question: "Wordda shrift (font) o‘lchami qayerdan sozlanadi?",
+                        options: [
+                            "Insert menyusidagi Header & Footer bo‘limidan",
+                            "Design menyusidagi Themes bo‘limidan",
+                            "Review menyusidagi Comments bo‘limidan",
+                            "Home menyusidagi Font size qutisidan"
+                        ],
+                        correctAnswer: 3,
+                        explanation: "Usuli: Home menyusidagi Font Size qutisidan amalga oshiriladi. Vazifasi: Matn harflarining kattaligini oshirish yoki kichraytirish imkonini beradi."                    
+                    },
+                    {
+                        question: "Sahifa raqamini qanday qo‘shish mumkin?",
+                        options: [
+                            "Home → Font menyusidan",
+                            "Layout → Margins menyusidan",
+                            "Review → Language menyusidan",
+                            "Word’da Insert → Page Number opsiyasidan"
+                        ],
+                        correctAnswer: 3,
+                        explanation: "Usuli: Insert → Page Number opsiyasi orqali qo‘shiladi. Vazifasi: Hujjat sahifalariga avtomatik tartib raqami qo‘yadi (yuqori, pastki yoki yon tomonlarda)."                    
+                    },
+                    {
+                        question: "Ctrl + S tugmalari nima uchun ishlatiladi?",
+                        options: [
+                            "Hujjatni chop etish uchun",
+                            "Hujjatni yopish uchun",
+                            "Hujjatni yangidan ochish uchun",
+                            "Hujjatni saqlash uchun"
+                        ],
+                        correctAnswer: 3,
+                        explanation: "Ta’rifi: Hujjatni saqlash uchun ishlatiladigan klaviatura yorlig‘i. Vazifasi: Yaratilgan yoki tahrirlangan hujjatni tezda kompyuter xotirasiga saqlab qo‘yadi."                    
+                    },
+                    {
+                        question: "Wordda hujjatga rasmni qanday qo‘shiladi?",
+                        options: [
+                            "Home → Font menyusidan",
+                            "Layout → Margins menyusidan",
+                            "Review → Comments menyusidan",
+                            "Insert → Picture menyusidan"
+                        ],
+                        correctAnswer: 3,
+                        explanation: "Usuli: Insert → Picture menyusi orqali kompyuterdan rasm tanlab qo‘shiladi. Vazifasi: Hujjat ichiga kerakli surat yoki grafikani joylashtirish imkonini beradi."                    
+                    },
+                    {
+                        question: "Ctrl + C va Ctrl + V nima vazifani bajaradi?",
+                        options: [
+                            "Matnni kesish (cut) va boshqa joyga ko‘chirish",
+                            "Hujjatni saqlash va chop etish",
+                            "Tanlangan matnni o‘chirish va orqaga qaytarish",
+                            "Ma’lumotni nusxalash (copy) va joylashtirish (paste)"
+                        ],
+                        correctAnswer: 3,
+                        explanation: "Ctrl + C (Copy): Belgilangan matn yoki rasmni nusxalab, vaqtinchalik xotiraga (clipboard) saqlaydi. Ctrl + V (Paste): Nusxalangan ma’lumotni hujjatga yoki tanlangan joyga joylashtiradi."                    
+                    },
+                    {
+                        question: "Word hujjatini qanday chop etiladi?",
+                        options: [
+                            "Home → Font menyusidan",
+                            "Insert → Table menyusidan",
+                            "Design → Themes menyusidan",
+                            "File → Print menyusidan"
+                        ],
+                        correctAnswer: 3,
+                        explanation: "Usuli: File → Print menyusi orqali amalga oshiriladi. Vazifasi: Hujjatni printer orqali qog‘ozga chiqarish imkonini beradi."                    
+                    },
+                    {
+                        question: "Wordda jadval (table) qanday qo‘shiladi?",
+                        options: [
+                            "Home → Styles menyusidan",
+                            "Review → Track Changes menyusidan",
+                            "Design → Themes menyusidan",
+                            "Insert → Table menyusidan"
+                        ],
+                        correctAnswer: 3,
+                        explanation: "Usuli: Insert → Table menyusi orqali jadval qo‘shiladi. Vazifasi: Hujjat ichida ma’lumotlarni satr va ustunlar shaklida tartibli joylashtirish imkonini beradi."                    
+                    },
+                    {
+                        question: "Hujjatni qanday saqlash mumkin?",
+                        options: [
+                            "Ctrl + P yoki “Print” menyusi orqali",
+                            "Ctrl + C yoki “Copy” tugmasi orqali",
+                            "Ctrl + Z yoki “Undo” menyusi orqali",
+                            "Ctrl + S yoki menyuda “Save” opsiyasini tanlash orqali"
+                        ],
+                        correctAnswer: 3,
+                        explanation: "Usuli: Ctrl + S tugmalari orqali yoki menyudan Save opsiyasini tanlab saqlash mumkin. Vazifasi: Hujjatni kompyuter xotirasiga yozib qo‘yadi va keyinchalik ochib ishlash imkonini beradi."                    
+                    },
+                    {
+                        question: "Qaysi menyuda ‘Bold’, ‘Italic’, ‘Underline’ opsiyalari mavjud?",
+                        options: [
+                            "Insert menyusining Media guruhida",
+                            "Design menyusining Themes guruhida",
+                            "Review menyusining Proofing guruhida",
+                            "Home menyusining Font guruhida"
+                        ],
+                        correctAnswer: 3,
+                        explanation: "Joylashuvi: Home menyusining Font guruhida joylashgan. Vazifasi: Matnni qalin (Bold), qiya (Italic) yoki osti chizilgan (Underline) ko‘rinishga keltiradi."                    
+                    }, 
+                    {
+                        question: "Ctrl + Z qanday vazifa bajaradi?",
+                        options: [
+                            "Tanlangan matnni nusxalaydi",
+                            "Hujjatni saqlaydi",
+                            "Amalni takrorlaydi (redo)",
+                            "Oxirgi amalni bekor qilish (undo)"
+                        ],
+                        correctAnswer: 3,
+                        explanation: "Ta’rifi: Oxirgi bajarilgan amalni bekor qilish (Undo) uchun ishlatiladi. Vazifasi: Matn o‘chirilsa yoki xato amal bajarilsa, uni qaytarib tiklash imkonini beradi."                    
+                    },
+                    {
+                        question: "Qanday qilib hujjatni parol bilan himoyalash mumkin?",
+                        options: [
+                            "File → Print → Page Setup orqali",
+                            "Insert → Symbol → Password orqali",
+                            "Home → Format → Paragraph orqali",
+                            "Word’da File → Protect Document → Encrypt with Password orqali"
+                        ],
+                        correctAnswer: 3,
+                        explanation: "Usuli: File → Protect Document → Encrypt with Password orqali amalga oshiriladi. Vazifasi: Hujjatga maxfiy parol qo‘yib, uni faqat parolni bilgan foydalanuvchi ochishi mumkin bo‘ladi."                    
+                    },
+                    {
+                        question: "Excel dasturi asosan nima uchun ishlatiladi?",
+                        options: [
+                            "Faqat matnli hujjatlar yozish va tahrirlash uchun",
+                            "Internetda saytlarga kirish va sahifalarni ko‘rish uchun",
+                            "Grafik dizayn va rasm chizish uchun",
+                            "Jadval ko‘rinishda ma’lumotni tahlil qilish va hisob-kitoblar uchun"
+                        ],
+                        correctAnswer: 3,
+                        explanation: "Ta’rifi: Ma’lumotlarni jadval ko‘rinishida kiritish, tahlil qilish va turli hisob-kitoblarni bajarish uchun mo‘ljallangan dastur. Vazifasi: Formulalar, diagrammalar va funksiyalar yordamida hisoblash va ma’lumotlarni vizual ko‘rsatish imkonini beradi."                    
+                    },
+                    {
+                        question: "Excel fayllarining kengaytmasi nima?",
+                        options: [
+                            ".docx",
+                            ".pptx",
+                            ".pdf",
+                            ".xlsx"
+                        ],
+                        correctAnswer: 3,
+                        explanation: "Excel dasturining barcha fayllari .xlsx bilan tugaydi."                    
+                    },
+                    {
+                        question: "Excelda formulani kiritish qanday belgidan boshlanadi?",
+                        options: [
+                            "% belgisi",
+                            "+ belgisi",
+                            "# belgisi",
+                            "= belgisi"
+                        ],
+                        correctAnswer: 3,
+                        explanation: "Usuli: Formula har doim “=” (tenglik) belgisi bilan boshlanadi. Vazifasi: Excelga hisob-kitob yoki amallarni bajarish kerakligini bildiradi."                    
+                    },
+                    {
+                        question: "Qanday funksiyalar asosiy matematik hisob-kitoblar uchun ishlatiladi?",
+                        options: [
+                            "ONLY(), PRINT(), DESIGN(), FORMAT()",
+                            "ZIP(), UNZIP(), LOCK(), UNLOCK()",
+                            "STYLE(), COLOR(), THEME(), FONT()",
+                            "+, -, *, /, SUM, AVERAGE, MIN, MAX"
+                        ],
+                        correctAnswer: 3,
+                        explanation: "Oddiy qilib aytganda, bu funksiyalar Excel’da asosiy hisob-kitob va tahlil qilish uchun ishlatiladi."                    
+                    },
+                    {
+                        question: "Excelda ustunlar qanday belgilanadi?",
+                        options: [
+                            "1, 2, 3 … formatda",
+                            "a1, b2, c3 … tarzda",
+                            "Roman raqamlari bilan I, II, III …",
+                            "A, B, C … formatda"
+                        ],
+                        correctAnswer: 3,
+                        explanation: "Belgilanilishi: Har bir ustun A, B, C … harflari bilan belgilanadi. Vazifasi: Jadvaldagi ma’lumotlarni tartib bilan ustunlar bo‘yicha ajratish va manzil (masalan, A1, B2) ko‘rinishida aniqlash imkonini beradi."                    
+                    },
+                    {
+                        question: "Excelda jadvalni qanday saqlash mumkin?",
+                        options: [
+                            "Ctrl + P yoki Tahrirlash menyusi orqali",
+                            "Ctrl + C yoki Ko‘rinish menyusi orqali",
+                            "Ctrl + X yoki Vstavka menyusi orqali",
+                            "Ctrl + S yoki Fayl → Saqlash menyusi orqali"
+                        ],
+                        correctAnswer: 3,
+                        explanation: "Usuli: Ctrl + S tugmalari yoki Fayl → Saqlash (Save) menyusi orqali amalga oshiriladi. Vazifasi: Kiritilgan jadval va ma’lumotlarni kompyuter xotirasiga yozib qo‘yadi."                    
+                    },
+                    {
+                        question: "Excelda Autosum tugmasi nima uchun kerak?",
+                        options: [
+                            "Jadvalga avtomatik ustun qo‘shish uchun",
+                            "Hujjatdagi barcha sonlarni avtomatik ajratib ko‘rsatish uchun",
+                            "Jadvaldagi ma’lumotlarni alfavit tartibida joylashtirish uchun",
+                            "Excel’da tez yig‘indi (SUM) funksiyasini ishlatish uchun"
+                        ],
+                        correctAnswer: 3,
+                        explanation: "Ta’rifi: Tanlangan kataklardagi sonlarning yig‘indisini tezda hisoblash uchun ishlatiladi. Vazifasi: SUM funksiyasini avtomatik qo‘shib, hisob-kitobni osonlashtiradi."                    
+                    },
+                    {
+                        question: "Excelda katakdagi ma’lumotni nusxalash uchun qaysi tugmalar ishlatiladi?",
+                        options: [
+                            "Ctrl + X va Ctrl + Z",
+                            "Ctrl + A va Ctrl + P",
+                            "Ctrl + S va Ctrl + O",
+                            "Ctrl + C va Ctrl + V"
+                        ],
+                        correctAnswer: 3,
+                        explanation: "Ctrl + C (Copy): Tanlangan katakdagi ma’lumotni nusxalaydi. Ctrl + V (Paste): Nusxalangan ma’lumotni boshqa katakka joylashtiradi."                    
+                    },
+                    {
+                        question: "Excelda ma’lumotlarni filtrlash qayerda amalga oshiriladi?",
+                        options: [
+                            "“Insert” menyusidagi Table opsiyasida",
+                            "“Home” menyusidagi Sort & Find bo‘limida",
+                            "View” menyusidagi Freeze Panes opsiyasida",
+                            "“Data” menyusidagi Filter opsiyasida"
+                        ],
+                        correctAnswer: 3,
+                        explanation: "Usuli: Data menyusidagi Filter opsiyasi orqali amalga oshiriladi. Vazifasi: Jadvaldagi ma’lumotlarni kerakli shart bo‘yicha saralash va faqat mos qiymatlarni ko‘rsatish imkonini beradi."                    
+                    },
+                    {
+                        question: "Excelda ustun yoki qatorni yashirish qayerdan amalga oshiriladi?",
+                        options: [
+                            "“Data” menyusidagi Filter opsiyasi orqali",
+                            "“View” menyusidagi Zoom opsiyasi orqali",
+                            "“Insert” menyusidagi Table opsiyasi orqali",
+                            "Ustun nomi yoki qator raqamiga o‘ng tugma bosib, “Hide” ni tanlash"
+                        ],
+                        correctAnswer: 3,
+                        explanation: "Usuli: Ustun nomi (A, B, C…) yoki qator raqami (1, 2, 3…) ustiga o‘ng tugma bosilib, “Hide” buyrug‘i tanlanadi. Vazifasi: Tanlangan ustun yoki qator vaqtincha ko‘rinmas qilib yashiriladi."                    
+                    },
+                    {
+                        question: "PowerPoint dasturining asosiy vazifasi nima?",
+                        options: [
+                            "Faqat matnli fayllarni siqib arxivlash uchun",
+                            "Hujjatlarni parol bilan himoyalash uchun",
+                            "Jadvaldagi ma’lumotlarni avtomatik tahlil qilish uchun",
+                            "Slaydlar orqali kontentni taqdim etish va vizual tarzda ko‘rsatish"
+                        ],
+                        correctAnswer: 3,
+                        explanation: "Ta’rifi: Ma’lumotlarni slaydlar orqali tayyorlash va taqdim etish uchun mo‘ljallangan dastur. Vazifasi: Matn, rasm, jadval, video va grafikalarni birlashtirib, ma’lumotni vizual tarzda ko‘rsatishga yordam beradi."                    
+                    },
+                    {
+                        question: "PowerPoint fayllarining kengaytmasi nima?",
+                        options: [
+                            ".xlsx",
+                            ".docx",
+                            ".pdf",
+                            ".pptx"
+                        ],
+                        correctAnswer: 3,
+                        explanation: "PowerPoint fayllarining oxiri .pptx bilan tugaydi"                    
+                    },
+                    {
+                        question: "Slaydga matn qanday qo‘shiladi?",
+                        options: [
+                            "Home → Styles yordamida",
+                            "Design → Background yordamida",
+                            "Review → Comments yordamida",
+                            "Insert → Text Box yordamida"
+                        ],
+                        correctAnswer: 3,
+                        explanation: "Usuli: Insert → Text Box opsiyasi orqali matn qutisi qo‘shiladi. Vazifasi: Slayd ichida xohlagan joyga matn yozish imkonini beradi."                    
+                    },
+                    {
+                        question: "Qanday tugma yordamida taqdimotni ishga tushirish mumkin?",
+                        options: [
+                            "F1 tugmasi",
+                            "F2 tugmasi",
+                            "F10 tugmasi",
+                            "F5 tugmasi"
+                        ],
+                        correctAnswer: 3,
+                        explanation: "Usuli: Klaviaturadagi F5 tugmasi bosiladi. Vazifasi: Taqdimotni birinchi slayddan to‘liq ekran rejimida ishga tushiradi."                    
+                    },
+                    {
+                        question: "Qaysi menyuda slayd dizayni tanlanadi?",
+                        options: [
+                            "Insert menyusi",
+                            "Home menyusi",
+                            "Review menyusi",
+                            "Design menyusi"
+                        ],
+                        correctAnswer: 3,
+                        explanation: "Joylashuvi: Design menyusida. Vazifasi: Slaydlarning umumiy ko‘rinishi, fon rangi va uslubini tanlash imkonini beradi."                    
+                    },
+                    {
+                        question: "PowerPointda rasmni slaydga qanday qo‘shiladi?",
+                        options: [
+                            "Home → Layout menyusidan",
+                            "Review → Spelling menyusidan",
+                            "Design → Background Styles menyusidan",
+                            "Insert → Picture menyusidan"
+                        ],
+                        correctAnswer: 3,
+                        explanation: "Usuli: Insert → Picture menyusi orqali kompyuterdan rasm tanlab qo‘shiladi. Vazifasi: Slayd ichiga surat yoki grafikani joylashtirish imkonini beradi."                    
+                    },
+                    {
+                        question: "Animatsiya nima uchun kerak?",
+                        options: [
+                            "Slaydga fon musiqa qo‘shish va uni avtomatik ijro ettirish uchun",
+                            "Slaydlar orasida sahifalarni avtomatik almashtirish uchun",
+                            "Matn va rasmga rang berish dizaynini tanlash uchun",
+                            "Slayddagi elementlarga harakat berib, kontentni jonlantirish uchun"
+                        ],
+                        correctAnswer: 3,
+                        explanation: "Ta’rifi: Slayddagi matn, rasm yoki boshqa elementlarga harakat berish jarayoni. Vazifasi: Kontentni jonlantirish, e’tiborni tortish va taqdimotni qiziqarli qilish uchun ishlatiladi."                    
+                    },
+                    {
+                        question: "Internet nima?",
+                        options: [
+                            "Faqat lokal hududdagi qurilmalarni ulash tizimi",
+                            "Elektron qurilmalarni elektr bilan ta’minlash tizimi",
+                            "Faqatgina fayllarni zaxiralovchi ichki tarmoq",
+                            "Global kompyuter tarmog‘i bo‘lib, ma’lumot almashuv imkonini beradi"
+                        ],
+                        correctAnswer: 3,
+                        explanation: "Ta’rifi: Butun dunyo bo‘ylab ulangan global kompyuter tarmog‘i. Vazifasi: Foydalanuvchilar o‘rtasida ma’lumot almashish, muloqot qilish va xizmatlardan foydalanish imkonini beradi."                    
+                    },
+                    {
+                        question: "Veb-brauzer vazifasi nima?",
+                        options: [
+                            "Faqat kompyuter xotirasini zaxiralash uchun ishlatiladi",
+                            "Kompyuterda grafik tahrirlash uchun xizmat qiladi",
+                            "Printer va skanerlarni boshqaradi",
+                            "Internet sahifalarini yuklash, ko‘rsatish va foydalanuvchi bilan o‘zaro ishlash imkonini beradi"
+                        ],
+                        correctAnswer: 3,
+                        explanation: "Ta’rifi: Internetdagi veb-sahifalarni ochish va ko‘rsatish uchun mo‘ljallangan dastur. Vazifasi: Veb-sahifalarni yuklash, ularni foydalanuvchiga ko‘rsatish va o‘zaro ishlash imkonini beradi."                    
+                    },
+                    {
+                        question: "Google Drive qanday xizmat turi?",
+                        options: [
+                            "Faqat PaaS (Platform as a Service)",
+                            "Faqat DaaS (Database as a Service)",
+                            "Faqat BaaS (Backup as a Service)",
+                            "SaaS (Software as a Service) va IaaS (Infrastructure as a Service)"
+                        ],
+                        correctAnswer: 3,
+                        explanation: "Ta’rifi: Foydalanuvchilarga fayllarni onlayn saqlash, ulashish va istalgan joydan ularga kirish imkonini beruvchi bulutli xizmat. Xizmat turi: SaaS (Software as a Service) – chunki u tayyor dasturiy xizmat sifatida foydalanuvchiga taqdim etiladi (saqlash, ulashish, hamkorlik)."                    
+                    },
+                    {
+                        question: "YouTube qanday platforma?",
+                        options: [
+                            "Faqat matnli hujjatlarni tahrirlash uchun mo‘ljallangan",
+                            "Elektron jadvallar hisob-kitobi uchun xizmat",
+                            "Faqat internetda elektron pochta yuborish uchun",
+                            "Videolarni tomosha qilish, yuklash, baham ko‘rishga mo‘ljallangan onlayn xizmat"
+                        ],
+                        correctAnswer: 3,
+                        explanation: "Ta’rifi: Video almashish va tomosha qilish uchun mo‘ljallangan onlayn platforma. Vazifasi: Foydalanuvchilar video yuklash, ulashish, tomosha qilish va izoh qoldirish imkoniga ega bo‘ladilar."                    
+                    },
+                    {
+                        question: "Elektron pochta (email) nima uchun kerak?",
+                        options: [
+                            "Faqat kompyuterda dasturlarni o‘rnatish uchun ishlatiladi",
+                            "Mahalliy tarmoqdagi printerlarni boshqarish uchun mo‘ljallangan",
+                            "Faqat internetda video tomosha qilish uchun xizmat qiladi",
+                            "Internet orqali yozma xabarlar, hujjat, fayllarni yuborish va qabul qilish uchun"
+                        ],
+                        correctAnswer: 3,
+                        explanation: "Ta’rifi: Internet orqali yozma xabarlar almashish tizimi. Vazifasi: Matnli xabarlar, hujjatlar va turli fayllarni yuborish va qabul qilish imkonini beradi."                    
+                    },
+                    {
+                        question: "URL nima?",
+                        options: [
+                            "Faqat faylni siqib, arxivlash dasturi",
+                            "Kompyuterda grafik tahrirlash dasturi",
+                            "Internetdan foydalanishni cheklovchi dastur",
+                            "Internetdagi resurslarning yagona manzili"
+                        ],
+                        correctAnswer: 3,
+                        explanation: "URL (Uniform Resource Locator) - Internetdagi resurslarning (veb-sahifa, rasm, fayl va boshqalar) yagona manzili. Vazifasi: Brauzerga kiritilganda kerakli sayt yoki resursni topib ochishga yordam beradi."                    
+                    },
+                    {
+                        question: "Wi-Fi nima?",
+                        options: [
+                            "Faqat kabel orqali internet ulash texnologiyasi",
+                            "Faqat printer bilan ishlash uchun maxsus drayver",
+                            "Kompyuterning grafik protsessori turi",
+                            "Simsiz lokal tarmoq texnologiyasi"
+                        ],
+                        correctAnswer: 3,
+                        explanation: "Qurilmalarni internet yoki lokal tarmoqqa simsiz ulash imkonini beruvchi texnologiya. Vazifasi: Kabelsiz internetdan foydalanish va ma’lumot almashishni ta’minlaydi."                    
+                    }
+                ]
+            }
+        ];
+
+ // DOM element selectors
+ const configContainer = document.querySelector(".config-container");
+        const quizContainer = document.querySelector(".quiz-container");
+        const answerOptions = quizContainer.querySelector(".answer-options");
+        const nextQuestionBtn = quizContainer.querySelector(".next-question-btn");
+        const questionStatus = quizContainer.querySelector(".question-status");
+        const timerDisplay = quizContainer.querySelector(".timer-duration");
+        const resultContainer = document.querySelector(".result-container");
+        const questionImage = quizContainer.querySelector(".question-image");
+        const resultMessage = document.querySelector(".result-message");
+        const resultConclusion = document.querySelector(".result-conclusion");
+        const explanationBtn = quizContainer.querySelector(".explanation-btn");
+        const explanationText = quizContainer.querySelector(".explanation-text");
+
+        // Quiz state variables
+        const QUIZ_TIME_LIMIT = 60;
+        let currentTime = QUIZ_TIME_LIMIT;
+        let timer = null;
+        let quizCategory = "Ortoped";
+        const numberOfQuestions = 20;
+        let currentQuestion = null;
+        const questionsIndexHistory = [];
+        let correctAnswersCount = 0;
+        let disableSelection = false;
+
+        // Display the quiz result and hide the quiz container
+        const showQuizResult = () => {
+            clearInterval(timer);
+            document.querySelector(".quiz-popup").classList.remove("active");
+            document.querySelector(".result-popup").classList.add("active");
+
+            const resultText = `Siz <b>${correctAnswersCount}</b> ta to'g'ri javob berdingiz. Jami savollar soni: <b>20</b>`;
+            resultMessage.innerHTML = resultText;
+
+            if (correctAnswersCount >= 15) {
+                resultConclusion.textContent = "Siz imtihondan o'tdingiz!";
+                resultConclusion.classList.add("passed");
+                resultConclusion.classList.remove("failed");
+                document.querySelector("lord-icon").setAttribute("src", "https://cdn.lordicon.com/lupuorrc.json");
+            } else {
+                resultConclusion.textContent = "Siz imtihondan o'ta olmadingiz. Keyingi safar yaxshiroq tayyorlanib keling!";
+                resultConclusion.classList.add("failed");
+                resultConclusion.classList.remove("passed");
+                document.querySelector("lord-icon").setAttribute("src", "https://cdn.lordicon.com/tdrtiskw.json");
+            }
+        };
+
+        // Clear and reset the timer
+        const resetTimer = () => {
+            clearInterval(timer);
+            currentTime = QUIZ_TIME_LIMIT;
+            timerDisplay.textContent = `${currentTime}s`;
+        };
+
+        // Initialize and start the timer for the current question
+        const startTimer = () => {
+            timer = setInterval(() => {
+                currentTime--;
+                timerDisplay.textContent = `${currentTime}s`;
+
+                if (currentTime <= 0) {
+                    clearInterval(timer);
+                    disableSelection = true;
+                    nextQuestionBtn.style.visibility = "visible";
+                    explanationBtn.style.display = "block";
+                    quizContainer.querySelector(".quiz-timer").style.background = "#c31402";
+                    highlightCorrectAnswer();
+
+                    answerOptions.querySelectorAll(".answer-option").forEach((option) => (option.style.pointerEvents = "none"));
+                }
+            }, 1000);
+        };
+
+        // Fetch a random question
+        const getRandomQuestion = () => {
+            const categoryQuestions = questions.find((cat) => cat.category.toLowerCase() === quizCategory.toLowerCase())?.questions || [];
+
+            if (questionsIndexHistory.length >= numberOfQuestions) {
+                return showQuizResult();
+            }
+
+            const availableQuestions = categoryQuestions.filter((_, index) => !questionsIndexHistory.includes(index));
+            const randomQuestion = availableQuestions[Math.floor(Math.random() * availableQuestions.length)];
+
+            if (randomQuestion) {
+                const shuffledOptions = [...randomQuestion.options];
+                const correctAnswerText = shuffledOptions[randomQuestion.correctAnswer];
+                
+                for (let i = shuffledOptions.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [shuffledOptions[i], shuffledOptions[j]] = [shuffledOptions[j], shuffledOptions[i]];
+                }
+                
+                const newCorrectIndex = shuffledOptions.indexOf(correctAnswerText);
+                
+                const shuffledQuestion = {
+                    ...randomQuestion,
+                    options: shuffledOptions,
+                    correctAnswer: newCorrectIndex
+                };
+
+                questionsIndexHistory.push(categoryQuestions.indexOf(randomQuestion));
+                return shuffledQuestion;
+            }
+
+            return randomQuestion;
+        };
+
+        // Highlight the correct answer option and add icon
+        const highlightCorrectAnswer = () => {
+            const correctOption = answerOptions.querySelectorAll(".answer-option")[currentQuestion.correctAnswer];
+            correctOption.classList.add("correct");
+            const iconHTML = `<span class="material-symbols-rounded"> check_circle </span>`;
+            correctOption.insertAdjacentHTML("beforeend", iconHTML);
+        };
+
+        // Toggle explanation visibility
+        const toggleExplanation = () => {
+            if (explanationText.style.display === "block") {
+                explanationText.style.display = "none";
+                explanationBtn.textContent = "Izoh";
+            } else {
+                explanationText.style.display = "block";
+                explanationBtn.textContent = "Izohni yashirish";
+            }
+        };
+
+        // Handle the user's answer selection
+        const handleAnswer = (option, answerIndex) => {
+            if (disableSelection) return;
+            clearInterval(timer);
+            disableSelection = true;
+
+            const isCorrect = currentQuestion.correctAnswer === answerIndex;
+            option.classList.add(isCorrect ? "correct" : "incorrect");
+            !isCorrect ? highlightCorrectAnswer() : correctAnswersCount++;
+
+            const iconHTML = `<span class="material-symbols-rounded"> ${isCorrect ? "check_circle" : "cancel"} </span>`;
+            option.insertAdjacentHTML("beforeend", iconHTML);
+
+            answerOptions.querySelectorAll(".answer-option").forEach((option) => (option.style.pointerEvents = "none"));
+
+            // Javob tanlangandan keyin izoh tugmasini ko'rsatish
+            explanationBtn.style.display = "block";
+            nextQuestionBtn.style.visibility = "visible";
+        };
+
+        // Render the current question and its options in the quiz
+        const renderQuestion = () => {
+            currentQuestion = getRandomQuestion();
+            if (!currentQuestion) return;
+            disableSelection = false;
+
+            resetTimer();
+            startTimer();
+
+            // UI ni yangilash
+            nextQuestionBtn.style.visibility = "hidden";
+            explanationBtn.style.display = "none";
+            explanationText.style.display = "none";
+            quizContainer.querySelector(".quiz-timer").style.background = "#32313C";
+            
+            // Rasmni sozlash
+            if (currentQuestion.image) {
+                questionImage.src = currentQuestion.image;
+                questionImage.style.display = "block";
+                questionImage.alt = "Illustration for: " + currentQuestion.question;
+            } else {
+                questionImage.style.display = "none";
+            }
+            
+            quizContainer.querySelector(".question-text").textContent = currentQuestion.question;
+            questionStatus.innerHTML = `<b>${questionsIndexHistory.length}</b>- savol <b>20</b> tadan`;
+            answerOptions.innerHTML = "";
+
+            // Javob variantlarini chiqarish
+            currentQuestion.options.forEach((option, index) => {
+                const li = document.createElement("li");
+                li.classList.add("answer-option");
+                li.textContent = option;
+                answerOptions.append(li);
+                li.addEventListener("click", () => handleAnswer(li, index));
+            });
+
+            // Izohni sozlash
+            explanationText.textContent = currentQuestion.explanation || "Bu savol uchun izoh mavjud emas.";
+        };
+
+        // Start the quiz and render the random question
+        const startQuiz = () => {
+            document.querySelector(".config-popup").classList.remove("active");
+            document.querySelector(".quiz-popup").classList.add("active");
+            renderQuestion();
+        };
+
+        // Reset the quiz and return to the configuration container
+        const resetQuiz = () => {
+            resetTimer();
+            correctAnswersCount = 0;
+            questionsIndexHistory.length = 0;
+            document.querySelector(".config-popup").classList.add("active");
+            document.querySelector(".result-popup").classList.remove("active");
+            document.querySelector("lord-icon").setAttribute("src", "https://cdn.lordicon.com/yqgsjpsy.json");
+        };
+
+        // Event listeners
+        nextQuestionBtn.addEventListener("click", renderQuestion);
+        resultContainer.querySelector(".try-again-btn").addEventListener("click", resetQuiz);
+        configContainer.querySelector(".start-quiz-btn").addEventListener("click", startQuiz);
+        explanationBtn.addEventListener("click", toggleExplanation);
+    </script>
+</body>
+</html>
